@@ -30,15 +30,10 @@ Example Output Explanation:
 def next_fib(n):
     if n == 0:
         return 0
-    if n == 1:
-        return 1
-
     a, b = 0, 1
-    res = 0
     while b < n:
         a, b = b, a+b
-        res = b
-    return res
+    return b
 
 
 if __name__ == '__main__':
