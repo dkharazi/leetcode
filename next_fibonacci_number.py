@@ -28,12 +28,10 @@ Example Output Explanation:
 """
 # return the next Fibonacci number greater than n
 def next_fib(n):
-    if n == 0:
-        return 0
     a, b = 0, 1
     while b < n:
         a, b = b, a+b
-    return b
+    return n and b
 
 
 if __name__ == '__main__':
