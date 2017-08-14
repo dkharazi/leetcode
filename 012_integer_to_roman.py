@@ -13,8 +13,7 @@ class Solution(object):
         :type num: int
         :rtype: str
         """
-    # http://www.cnblogs.com/zuoyuan/p/3779581.html
-    def intToRoman(self, num):
+        # http://www.cnblogs.com/zuoyuan/p/3779581.html
         values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
         numerals = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"]
         list = ''
