@@ -15,7 +15,11 @@ Your function should return length = 2,
 with the first two elements of nums being 1 and 2 respectively.
 It doesn't matter what you leave beyond the new length.
 
+https://github.com/gengwg/leetcode
 """
+# Time:  O(n)
+# Space: O(1)
+#
 
 
 class Solution(object):
@@ -38,6 +42,32 @@ class Solution(object):
                 j += 1
         # j now points to the last distinct element index
         return j + 1
+
+    def removeDuplicates(self, A):
+        if not A:
+            return 0
+
+        last, i = 0, 1
+        while i < len(A):
+            if A[last] != A[i]:
+                last += 1
+                A[last] = A[i]
+            i += 1
+
+        # print A
+        return last + 1
+
+    def removeDuplicates(self, A):
+        if not A:
+            return 0
+
+        last = 0
+        for i in range(1, len(A)):
+            if A[last] != A[i]:
+                last += 1
+                A[last] = A[i]
+
+        return last + 1
 
 
     def removeDuplicatesExtraSpace(self, nums):
