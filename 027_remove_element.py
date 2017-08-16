@@ -43,7 +43,28 @@ class Solution(object):
         # j now points to last non val element
         return j + 1
 
+    # l, r pointers move to the center
+    def removeElement(self, nums, val):
+
+        l, r = 0, len(nums) -1
+
+        while l <= r:
+            if nums[l] == val:
+                # if l == val, exchange l, r;
+                # effectively move val elements to the right
+                nums[l], nums[r] = nums[r], nums[l]
+                # move r pointers back
+                r -= 1
+            else:
+                # if l != val, advance l
+                l += 1
+
+        # return elements up to l, n[:l]
+        # or n[:r+1]
+        return len(nums[:l])
+
 
 if __name__ == '__main__':
     print Solution().removeElement(nums = [3, 2, 2, 3], val = 3)
-    print Solution().removeElement(nums = [2, 2], val = 3)
+    print Solution().removeElement(nums = [2, 5], val = 3)
+    print Solution().removeElement(nums = [], val = 3)
