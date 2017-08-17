@@ -30,7 +30,7 @@ class Solution(object):
 
             if nums[mid] >= nums[left]:
                 if target < nums[mid] and target >= nums[left]:
-                    right = mid -1
+                    right = mid - 1
                 else:
                     left = mid + 1
 
@@ -40,8 +40,9 @@ class Solution(object):
                 else:
                     right = mid - 1
 
-            return -1
+        return -1
 
 
 if __name__ == '__main__':
     print Solution().search([4, 5, 6, 7, 0, 1, 2], 5)
+    print Solution().search([], 3)
