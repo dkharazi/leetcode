@@ -14,9 +14,8 @@ Given [5, 7, 7, 8, 8, 10] and target value 8,
 return [3, 4].
 
 解题思路：又是二分查找的变形。
-因为题目要求的时间复杂度是O(log n)。在二分查找到元素时，需要向前和向后遍历来找到target元素的起点和终点。
-
-
+因为题目要求的时间复杂度是O(log n)。
+在二分查找到元素时，需要向前和向后遍历来找到target元素的起点和终点。
 """
 
 
@@ -39,10 +38,10 @@ class Solution(object):
             return [found[0], found[0]]
         else:
             return [found[0], found[-1]]
-        
+
     # http://www.cnblogs.com/zuoyuan/p/3775904.html
     def searchRange(self, nums, target):
-        left = 0; right = len(nums) -1
+        left = 0; right = len(nums) - 1
         while left <= right:
             mid = (left + right) / 2
             if nums[mid] > target:
