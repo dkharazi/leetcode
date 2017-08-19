@@ -20,6 +20,10 @@ pow(x, n)
 = x^(2 * n/2 + 1)
 = (x^2)^(n/2) * x   [x^(a+b) = x^a * x^b]
 = pow(x*x, n/2) * x
+
+Complexity:
+O(logn) time
+O(1) space
 """
 
 
