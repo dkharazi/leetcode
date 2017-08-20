@@ -1,16 +1,19 @@
+# -*- coding: utf-8 -*-
 """
+56. Merge Intervals
+
 Given a collection of intervals, merge all overlapping intervals.
 
 For example,
 Given [1,3],[2,6],[8,10],[15,18],
 return [1,6],[8,10],[15,18].
 
-Author: gengwg[at]gmail.com
+Author: gengwg
 """
 
 from collections import Counter
 
-l = [(1,3), (2,6), (8,10), (15,18)]
+l = [(1, 3), (2, 6), (8, 10), (15, 18)]
 
 # flatten the list
 flat = [x for _ in l for x in _]
@@ -43,3 +46,54 @@ for x in set(to_remove):
 # the final result are guarrantted to be even numbers
 # due to the intervals are pairs..
 print zip(ssf[0::2], ssf[1::2])
+
+# --------------------
+# Definition for an interval.
+# class Interval(object):
+#     def __init__(self, s=0, e=0):
+#         self.start = s
+#         self.end = e
+"""
+http://www.cnblogs.com/zuoyuan/p/3782028.html
+解题思路：
+先将区间按照每个start的值来排序，
+排好序以后判断一个区间的start值是否处在前一个区间中，
+如果在前一个区间中，那么合并；
+如果不在，就将新区间添加。
+"""
+
+
+class Interval(object):
+    def __init__(self, s=0, e=0):
+        self.start = s
+        self.end = e
+
+    def __str__(self):
+        return str((self.start, self.end))
+
+
+class Solution(object):
+    def merge(self, intervals):
+        """
+        :type intervals: List[Interval]
+        :rtype: List[Interval]
+        """
+        intervals.sort(key=lambda x: x.start)
+        length = len(intervals)
+        res = []
+        for i in range(length):
+            if res == []:
+                res.append(intervals[i])
+            else:
+                size = len(res)
+                if res[size - 1].start <= intervals[i].start <= res[size - 1].end:
+                    res[size - 1].end = max(intervals[i].end, res[size - 1].end)
+                else:
+                    res.append(intervals[i])
+        return res
+
+
+if __name__ == '__main__':
+    intervals = [Interval(1, 3), Interval(2, 6), Interval(8, 10), Interval(15, 18)]
+    for interval in Solution().merge(intervals):
+        print interval,
