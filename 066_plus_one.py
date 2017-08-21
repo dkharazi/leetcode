@@ -1,4 +1,6 @@
-# Given a non-negative number represented as an array of digits, plus one to the number.
+# 67. Add Binary
+#
+#  Given a non-negative number represented as an array of digits, plus one to the number.
 #
 # You may assume the integer do not contain any leading zero, except the number 0 itself.
 #
