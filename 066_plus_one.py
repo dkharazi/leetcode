@@ -1,4 +1,4 @@
-# 67. Add Binary
+# 66. Puls One
 #
 #  Given a non-negative number represented as an array of digits, plus one to the number.
 #
