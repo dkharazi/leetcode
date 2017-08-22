@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 77. Combinations
 
@@ -53,6 +54,28 @@ class Solution(object):
         dfs(1, [])
 
         return ans
+
+    # https://shenjie1993.gitbooks.io/leetcode-python/077%20Combinations.html
+    # recursion
+
+    def combine(self, n, k):
+        """
+        采用递归的方式，
+        在n个数中选k个，
+        如果n大于k，那么可以分类讨论，
+        如果选了n，那么就是在1到(n-1)中选(k-1)个，
+        否则就是在1到(n-1)中选k个。
+        递归终止的条件是k为1，这时候1到n都符合要求。
+        """
+        if k == 1:
+            return [[i + 1] for i in range(n)]
+        res = []
+        if n > k:
+            res = [r + [n] for r in self.combine(n - 1, k - 1)] + self.combine(n - 1, k)
+        else:
+            res = [r + [n] for r in self.combine(n - 1, k - 1)]
+
+        return res
 
 
 if __name__ == '__main__':
