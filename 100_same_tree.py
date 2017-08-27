@@ -65,11 +65,31 @@ class Solution(object):
 
         return dfs(p, q)
 
+    # in one method
+    def isSameTree(self, p, q):
+        if p is None and q is None:
+            return True
+        elif p is not None and q is not None:
+            return p.val == q.val and self.isSameTree(p.left, q.left) \
+                   and self.isSameTree(p.right, q.right)
+        else:
+            # (p is not None, q is None) || (p is None and q is not None)
+            return False
 
 if __name__ == "__main__":
     p = TreeNode(0)
     # p.left = TreeNode(1)
     q = TreeNode(1)
     # q.left = TreeNode(1)
-
+    print p, q
     print Solution().isSameTree(p, q)
+
+    p = TreeNode(2)
+    p.left = TreeNode(3)
+    p.right = TreeNode(4)
+    q = TreeNode(2)
+    q.left = TreeNode(3)
+    q.right = TreeNode(4)
+    print p, q
+    print Solution().isSameTree(p, q)
+
