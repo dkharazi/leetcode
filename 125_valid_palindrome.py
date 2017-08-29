@@ -39,7 +39,14 @@ class Solution(object):
                 return False
         return True
 
+    # use filter
+    def isPalindrome(self, s):
+        st = filter(str.isalnum, s).lower()
+        return st == st[::-1]
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+    print Solution().isPalindrome("")
+    print Solution().isPalindrome("abba")
+
     assert Solution().isPalindrome("A man, a plan, a canal: Panama") is True
     assert Solution().isPalindrome("race a car") is False
