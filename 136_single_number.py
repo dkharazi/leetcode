@@ -11,6 +11,7 @@
 # we XOR all numbers in the array, and we would finally get the number that only appears once.
 
 import operator
+from functools import reduce
 
 
 class Solution:
@@ -24,10 +25,16 @@ class Solution:
             res ^= nums[i]
         return res
 
+    # use reduce
     def singleNumber(self, A):
         # function reduce(func, seq) continually applies the function func()
         # to the sequence seq. it returns a single value.
+
         return reduce(operator.xor, A)
+
+    # use lambda
+    def singleNumber(self, A):
+        return reduce(lambda x, y: x ^ y, A)
 
 
 if __name__ == "__main__":
