@@ -1,4 +1,6 @@
-# Write a program to find the node at which the intersection
+# 160. Intersection of Two Linked Lists
+#
+#  Write a program to find the node at which the intersection
 # of two singly linked lists begins.
 #
 #
@@ -10,6 +12,16 @@
 #                    /
 # B:     b1 - b2 - b3
 # begin to intersect at node c1.
+#
+# Notes:
+#
+# If the two linked lists have no intersection at all, return null.
+# The linked lists must retain their original structure after the function returns.
+# You may assume there are no cycles anywhere in the entire linked structure.
+# Your code should preferably run in O(n) time and use only O(1) memory.
+#
+# Credits:
+# Special thanks to @stellari for adding this problem and creating all test cases.
 
 class ListNode:
     def __init__(self, x):
@@ -19,6 +31,7 @@ class ListNode:
     def __repr__(self):
         if self:
             return "{} -> {}".format(self.val, repr(self.next))
+
 
 class Solution:
     def getIntersectionNode(self, headA, headB):
@@ -39,6 +52,7 @@ class Solution:
             # This is the address of the object in memory.
             # seems not working
             # if id(headA) == id(headB):
+            # to submit to leetcode, remove .val below
             if headA.val == headB.val:
                 return headA.val
             headA = headA.next
@@ -56,9 +70,40 @@ class Solution:
 
         return len
 
+    def getIntersectionNode(self, headA, headB):
+        """
+        :type head1, head1: ListNode
+        :rtype: ListNode
+        """
+        p = headA
+        q = headB
+
+        lengthA = 0
+        lengthB = 0
+        while p:
+            p = p.next
+            lengthA += 1
+        while q:
+            q = q.next
+            lengthB += 1
+
+        p = headA
+        q = headB
+        if lengthA > lengthB:
+            for _ in range(lengthA - lengthB):
+                p = p.next
+        else:
+            for _ in range(lengthB - lengthA):
+                q = q.next
+
+        while p and q:
+            if p == q:
+                return p
+            p = p.next
+            q = q.next
+
 
 if __name__ == "__main__":
-
     headA = ListNode(1)
     headA.next = ListNode(2)
     headA.next.next = ListNode(3)
@@ -73,4 +118,3 @@ if __name__ == "__main__":
     print headA
     print headB
     print Solution().getIntersectionNode(headA, headB)
-
