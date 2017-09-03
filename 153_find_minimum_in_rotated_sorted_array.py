@@ -25,6 +25,17 @@ class Solution(object):
                 l = m + 1
         return nums[l]
 
+    # http://www.cnblogs.com/zuoyuan/p/4045742.html
+    def findMin(self, nums):
+        l, r = 0, len(nums) - 1
+        while l < r and nums[l] > nums[r]:
+            m = (l + r) / 2
+            if nums[m] < nums[r]:
+                r = m
+            else:
+                l = m + 1
+        return nums[l]
+
 
 if __name__ == '__main__':
     print Solution().findMin([4, 5, 6, 7, 0, 1, 2])
