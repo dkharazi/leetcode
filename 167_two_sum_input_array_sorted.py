@@ -1,3 +1,5 @@
+# 167. Two Sum II - Input array is sorted
+#
 # Given an array of integers that is already sorted in ascending order,
 # find two numbers such that they add up to a specific target number.
 #
@@ -5,11 +7,16 @@
 # they add up to the target, where index1 must be less than index2.
 # Please note that your returned answers (both index1 and index2) are not zero-based.
 #
+# You may assume that each input would have exactly one solution and you may not use the same element twice.
+#
+# Input: numbers={2, 7, 11, 15}, target=9
+# Output: index1=1, index2=2
+
 
 class Solution:
+    # binary search
     def twoSum(self, nums, target):
         start, end = 0, len(nums) - 1
-
         while start != end:
             sum = nums[start] + nums[end]
             if sum > target:
@@ -17,7 +24,21 @@ class Solution:
             elif sum < target:
                 start += 1
             else:
-                return [start, end]
+                # index is 1-based, not 0-based.
+                # return [start, end]
+                return list(map(lambda x: x + 1, [start, end]))
+        return []
+
+    # hash map
+    def twoSum(self, numbers, target):
+        lookup = {}
+        for i, num in enumerate(numbers):
+            if target - num in lookup:
+                # return [lookup[target - num], i]
+                return list(map(lambda x: x + 1, [lookup[target - num], i]))
+            lookup[num] = i
+        return []
+
 
 if __name__ == "__main__":
     print Solution().twoSum([2, 7, 11, 15], 9)
