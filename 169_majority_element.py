@@ -47,6 +47,27 @@ class Solution(object):
                 count -= 1
         return candidate
 
+    def majorityElement2(self, num):
+        idx, cnt = 0, 1
+
+        for i in xrange(1, len(num)):
+            if num[idx] == num[i]:
+                cnt += 1
+            else:
+                cnt -= 1
+                if cnt == 0:
+                    idx = i
+                    cnt = 1
+
+        return num[idx]
+
+    def majorityElement3(self, nums):
+        import collections
+        if collections.Counter(nums).most_common()[0][1] > len(nums)/2 :
+            return collections.Counter(nums).most_common()[0][0]
 
 if __name__ == '__main__':
     print Solution().majorityElement([1, 2, 2, 2, 3])
+    print Solution().majorityElement3([1, 1, 2, 1])
+    print Solution().majorityElement3([1, 2, 3, 4, 5, 5, 5, 5, 5, 5, 6])
+
