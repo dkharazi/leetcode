@@ -61,4 +61,10 @@ class Solution(object):
                     flag = True
             for x in removeList:
                 courses.remove(x)
-        return len(courses)
+        return len(courses) == 0
+
+
+if __name__ == '__main__':
+    print Solution().canFinish(4, [[1, 0], [2, 0], [3, 1], [3, 2]])
+    print Solution().canFinish(2, [[1,0],[0,1]])
+
