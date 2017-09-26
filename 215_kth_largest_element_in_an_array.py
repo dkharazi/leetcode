@@ -14,6 +14,7 @@
 
 
 import random
+import heapq
 
 
 class Solution(object):
@@ -49,6 +50,9 @@ class Solution(object):
             return self.findKthLargest(nums2, k - (len(nums) - len(nums2)))
         return pivot
 
+    # heapq
+    def findKthLargest(self, nums, k):
+        return heapq.nlargest(k, nums)[-1]
 
 if __name__ == '__main__':
     print Solution().findKthLargest([3, 2, 1, 5, 6, 4], 2)
