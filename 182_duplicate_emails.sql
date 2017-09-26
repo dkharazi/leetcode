@@ -33,7 +33,7 @@ from Person a, Person b
 where a.Email = b.Email and a.Id != b.Id;
 
 /* http://www.cnblogs.com/lilixu/p/4610388.html */
-select Email from Person
-group by Email
-having count(*) > 1;
+SELECT Email FROM Person 
+GROUP BY Email 
+HAVING COUNT(*) > 1
 
