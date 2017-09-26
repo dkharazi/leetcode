@@ -44,3 +44,5 @@ class Solution(object):
 
 if __name__ == '__main__':
     print Solution().combinationSum([2, 3, 6, 7], 7)
+    res = Solution().combinationSum(list(range(1,10)), 7)
+    print list(filter(lambda x: len(x) == 3, res))
