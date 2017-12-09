@@ -39,6 +39,9 @@ class Solution(object):
         :type target: int
         :rtype: bool
         """
+        if len(matrix) == 0:
+            return False
+
         m = len(matrix)     # row
         n = len(matrix[0])  # col
 
