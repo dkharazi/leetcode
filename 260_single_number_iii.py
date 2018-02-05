@@ -1,3 +1,5 @@
+# 260. Single Number III
+#
 # Given an array of numbers nums, in which exactly two
 # elements appear only once and all the other elements
 # appear exactly twice. Find the two elements that appear only once.
@@ -20,6 +22,29 @@ class Solution:
                 resultDict[i] = 1
 
         return list(resultDict.keys())
+
+
+    def singleNumber(self, nums):
+        d = {}
+        for n in nums:
+            if n not in d:
+                d[n] = 1
+            else:
+                d[n] += 1
+        return [k for k, v in d.items() if v == 1]
+
+    # https://www.jianshu.com/p/c31bd59d7877
+    def singleNumber(self, nums):
+        both = set()
+        double = set()
+        for n in nums:
+            if n not in both:
+                both.add(n)
+            else:
+                double.add(n)
+        print both
+        print double
+        return list(both - double)
 
 if __name__ == "__main__":
     print Solution().singleNumber([1, 2, 1, 3, 2, 5])
