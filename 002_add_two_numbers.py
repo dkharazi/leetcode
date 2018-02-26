@@ -80,6 +80,24 @@ class Solution(object):
         # ignore dummy.head which is always 0.
         return dummy.next
 
+    # https://gengwg.blogspot.com/2018/02/leoleetcode-2-add-two-numbers.html
+    def addTwoNumbers(self, l1, l2):
+        dummy = p = ListNode(0)
+        carry = 0
+        while l1 or l2 or carry:
+            value = 0
+            if l1:
+                value += l1.val
+                l1 = l1.next
+            if l2:
+                value += l2.val
+                l2 = l2.next
+            value += carry
+            p.next = ListNode(value % 10)
+            carry = value / 10
+            p = p.next
+        return dummy.next
+
 
 if __name__ == '__main__':
     l1 = ListNode(1)

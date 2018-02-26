@@ -17,8 +17,6 @@ class Solution:
                 return [lookup[target - num], i]
             lookup[num] = i
 
-        return []
-
-
 if __name__ == '__main__':
     print "index1={0}, index2={1}".format(*Solution().twoSum((2, 7, 11, 15), 9))
+    print "index1={0}, index2={1}".format(*Solution().twoSum((2, 11, 15, 7), 9))
