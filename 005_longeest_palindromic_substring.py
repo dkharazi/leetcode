@@ -19,7 +19,6 @@ Output: "bb"
 
 
 class Solution(object):
-
     def longestPalindrome(self, s):
         """
         author: http://www.cnblogs.com/zuoyuan/p/3777721.html
@@ -29,16 +28,15 @@ class Solution(object):
         palindrome = ''
         # at every position, check the longest palin here
         for i in range(len(s)):
-            # "aba"
+            # odd palindrome case, e.g. "aba"
             len1 = len(self.getlongestpalindrome(s, i, i))
             if len1 > len(palindrome):
                 palindrome = self.getlongestpalindrome(s, i, i)
 
-            # "abba"
+            # even palindrome case, e.g. "abba"
             len2 = len(self.getlongestpalindrome(s, i, i + 1))
             if len2 > len(palindrome):
                 palindrome = self.getlongestpalindrome(s, i, i + 1)
-
         return palindrome
 
     # check longest palin at position i
@@ -49,6 +47,7 @@ class Solution(object):
         # l, r now out of range (0, len(s)-1)
         return s[l + 1: r]
 
+    # TLE
     def longestPalindromeBrutal(self, s):
         """
         1. get all substrings
