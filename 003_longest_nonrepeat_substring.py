@@ -44,7 +44,6 @@ class Solution(object):
         start = 0;
         maxlen = 0;
         dict = {}
-
         for i in range(len(s)): dict[s[i]] = -1
 
         for end in range(len(s)):
@@ -70,8 +69,21 @@ class Solution(object):
 
             dict[s[end]] = end
             # print dict
-
         return maxlen
+
+    # https://gengwg.blogspot.com/2018/02/leoleetcode-3-longest-substring-without.html
+    def lengthOfLongestSubstring(self, s):
+        tempDict = {}
+        maxLen = 0
+        start = 0
+        for index, value in enumerate(s):
+            if value in tempDict:   # if value in dict
+                # non repeating substring must be after current value
+                start = max(tempDict[value] + 1, start)
+            # record max length
+            maxLen = max(index - start + 1, maxLen)
+            tempDict[value] = index
+        return maxLen
 
 if __name__ == '__main__':
     print Solution().lengthOfLongestSubstring("abcabcbb")
