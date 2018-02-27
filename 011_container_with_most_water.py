@@ -37,8 +37,9 @@ class Solution(object):
         while left < right:
             # 两个隔板的矮的那一个的高度乘以两个隔板的间距就是储水量
             water = min(height[left], height[right]) * (right - left)
-            if water > maxarea:
-                maxarea = water
+            maxarea = max(water, maxarea)
+            #if water > maxarea:
+            #    maxarea = water
             # always move the lower height
             # because distance is closer, it is only possible larger
             # when the smaller height is higher
