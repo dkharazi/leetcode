@@ -20,6 +20,14 @@ There is a more generic way of solving this problem.
 
 
 class Solution(object):
+    # convert to string. require extra space
+    def isPalindrome(self, x):
+        # if x < 0:
+        #    return False
+        # one can simply return this, because negative number will return False
+        return str(x) == str(x)[::-1]
+        # oneliner
+        # return str(x) == str(x)[::-1] if x >= 0 else False
 
     def isPalindrome(self, x):
         """
@@ -29,27 +37,30 @@ class Solution(object):
         if x < 0:
             return False
 
-        # find the max divisor
+        # find the max divisor for getting the left most digit
         # later decrease the divisor in the loop
         div = 1
         while x / div >= 10:
             div *= 10
 
         while x:
+            # get left most digit
             left = x / div
+            # get right most digt
             right = x % 10
 
             if left != right:
                 return False
 
-            # strip off left most and right most
-            # print x, div
-            x = (x % div) / 10
-            # decrease by order of 2 divisor
+            # strip off left most digit
+            x %= div
+            # strip off right most digit
+            x /= 10
+            # x = (x % div) / 10
+            # decrease by order of 2 divisor, due to above lost 2 digits
             div /= 100
 
         return True
-
 
 if __name__ == '__main__':
     print Solution().isPalindrome(-1234)
