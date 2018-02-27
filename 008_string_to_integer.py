@@ -99,7 +99,7 @@ class Solution(object):
         return sign * answer
 
     # http://blog.csdn.net/coder_orz/article/details/52053932
-    # this one not need list
+    # this one does not need list
     def myAtoi2(self, str):
 
         if not str:
@@ -164,6 +164,34 @@ class Solution(object):
             i += 1
 
         return sign * result
+
+    # use str.isdigit()
+    def myAtoi(self, str):
+        res = 0
+        sign = 1
+        st = str.strip()
+        if not st:
+            return 0
+        start = 0
+        end = len(st)
+
+        if st[0] == '+':
+            start = 1
+        elif st[0] == '-':
+            sign = -1
+            start = 1
+
+        for i in range(start, end):
+            if st[i].isdigit():
+                res = res * 10 + int(st[i])
+            else:
+                break
+
+        res *= sign
+        # check overflow
+        res = res if res <= 2147483647 else 2147483647
+        res = res if res >= -2147483648 else -2147483648
+        return res
 
 
 if __name__ == '__main__':

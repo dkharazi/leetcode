@@ -59,7 +59,9 @@ class Solution(object):
         sign = 1 if x > 0 else -1
         x = abs(x)
         while x > 0:
+            # get the last digit
             answer = answer * 10 + x % 10
+            # remove the last digit
             x /= 10
         # returns 0 when the reversed integer overflows
         if sign * answer < self.MIN or sign * answer > self.MAX:
