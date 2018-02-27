@@ -13,25 +13,28 @@ Here are some good questions to ask before coding. Bonus points for you if you h
 
 If the integer's last digit is 0, what should the output be? ie, cases such as 10, 100.
 
-Did you notice that the reversed integer might overflow? Assume the input is a 32-bit integer, then the reverse of 1000000003 overflows. How should you handle such cases?
+Did you notice that the reversed integer might overflow?
+Assume the input is a 32-bit integer, then the reverse of 1000000003 overflows.
+How should you handle such cases?
 
 For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.
 
 Note:
-The input is assumed to be a 32-bit signed integer. Your function should return 0 when the reversed integer overflows.
+The input is assumed to be a 32-bit signed integer.
+Your function should return 0 when the reversed integer overflows.
 """
 
 
 class Solution(object):
-    MIN = - 2 ** 31
-    MAX = 2 ** 31 - 1
+    def __init__(self):
+        self.MIN = - 2 ** 31
+        self.MAX = 2 ** 31 - 1
 
     def reverse(self, x):
         """
         :type x: int
         :rtype: int
         """
-
 
         result = 0
         sign = 1
@@ -48,21 +51,19 @@ class Solution(object):
 
         if result < self.MIN or result > self.MAX:
             return 0
-
         return result
 
     # http://www.cnblogs.com/zuoyuan/p/3777730.html
-    def reverse2(self, x):
+    def reverse(self, x):
         answer = 0
         sign = 1 if x > 0 else -1
         x = abs(x)
         while x > 0:
             answer = answer * 10 + x % 10
             x /= 10
-
+        # returns 0 when the reversed integer overflows
         if sign * answer < self.MIN or sign * answer > self.MAX:
             return 0
-
         return sign * answer
 
 
