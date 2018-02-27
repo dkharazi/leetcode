@@ -25,3 +25,4 @@ class Solution(object):
 
 if __name__ == '__main__':
     print Solution().intToRoman(2)
+    print Solution().intToRoman(3999)
