@@ -30,25 +30,25 @@ class Solution(object):
 
     # http://www.cnblogs.com/zuoyuan/p/3779485.html
     def maxArea(self, height):
-        left = 0;
+        left = 0
         right = len(height) - 1
-        res = 0
+        maxarea = 0
         # move pointer from both directions
         while left < right:
             # 两个隔板的矮的那一个的高度乘以两个隔板的间距就是储水量
             water = min(height[left], height[right]) * (right - left)
-            if water > res:
-                res = water
+            if water > maxarea:
+                maxarea = water
             # always move the lower height
             # because distance is closer, it is only possible larger
-            # when the min height is higher
+            # when the smaller height is higher
             if height[left] < height[right]:
                 left += 1
             else:
                 right -= 1
-        return res
+        return maxarea
 
 
 if __name__ == '__main__':
-    print Solution().maxArea([3, 2, 2])
-    print Solution().maxArea([3, 5, 7, 4, 2, 9, 12])
+    print(Solution().maxArea([3, 2, 2]))
+    print(Solution().maxArea([3, 5, 7, 4, 2, 9, 12]))
