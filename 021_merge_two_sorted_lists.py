@@ -25,13 +25,17 @@ class Solution:
             # and advance smaller node
             if l1.val < l2.val:
                 curr.next = l1
+                # another way is to create a new node using smaller listnode value
+                # this increases space complexity from O(1) to O(n)
+                # curr.next = ListNode(l1.val)
                 l1 = l1.next
             else:
                 curr.next = l2
+                # curr.next = ListNode(l2.val)
                 l2 = l2.next
             # advance curr to the above smaller node
             curr = curr.next
-        # connect curr to the rest of longer list
+        # connect curr to the rest of non-empty longer list
         curr.next = l1 or l2
         return dummy.next
 
