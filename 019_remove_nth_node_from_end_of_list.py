@@ -14,6 +14,7 @@ Given n will always be valid.
 Try to do this in one pass.
 """
 
+
 # Definition for singly-linked list.
 # class ListNode(object):
 #     def __init__(self, x):
@@ -25,7 +26,6 @@ class ListNode(object):
         self.val = x
         self.next = None
 
-
     def __str__(self):
         s = ""
         if self != None:
@@ -36,7 +36,24 @@ class ListNode(object):
             s += str(self.val)
         return s
 
+
 class Solution(object):
+    # 2 pass. one pass to find the length
+    def removeNthFromEnd(self, head, n):
+        p = q = dummy = ListNode(0)
+        dummy.next = head
+        m = 0
+        # calculate length of the list
+        while p:
+            m += 1
+            p = p.next
+
+        for _ in range(m - n - 1):
+            q = q.next
+        q.next = q.next.next
+        return dummy.next
+
+    # 3 pointers
     def removeNthFromEnd(self, head, n):
         """
         :type head: ListNode
@@ -44,29 +61,28 @@ class Solution(object):
         :rtype: ListNode
         """
 
-
         p = q = dummy = ListNode(0)
         dummy.next = head
 
         # p, q points to dummy, instead of head
         # in order for the remove (double next) to work, when there is only 1 element
-        # p = q = dummy
 
         # advance p n steps first
         for _ in range(n):
             p = p.next
 
-        # advance p, q together
-        # when p.next = None, q.next is the one to be removed.
-        # not use p = None. q already passed the one to be remove. too late.
+        # advance p, q together to find the node to be removed
+        # when p.next is None, q.next is the node to be removed.
+        # do not use when p is None; q already passed the one to remove. too late.
         while p.next:
             p = p.next
             q = q.next
 
-        # remove q.next
+        # q.next is the node to be removed; q is not.
         q.next = q.next.next
 
         return dummy.next
+
 
 if __name__ == '__main__':
     l = ListNode(1)
@@ -76,5 +92,4 @@ if __name__ == '__main__':
     l.next.next.next.next = ListNode(5)
 
     print l
-
     print Solution().removeNthFromEnd(l, 2)
