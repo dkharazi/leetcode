@@ -106,10 +106,14 @@ class Solution(object):
 
         if not digits:
             return []
+        # get each element out of results and digits and add together
         return reduce(lambda results, digit: [result + letter
                                               for result in results
                                               for letter in phone_dict[digit]],
-                      digits, [''])
+                      digits,  #
+                      [''])  # initial results
+
+
 if __name__ == '__main__':
     print Solution().letterCombinations("23")
     print Solution().letterCombinations("234")
