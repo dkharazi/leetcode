@@ -20,6 +20,7 @@ return [3, 4].
 
 
 class Solution(object):
+    # O(n)
     def searchRange(self, nums, target):
         """
         :type nums: List[int]
@@ -62,6 +63,47 @@ class Solution(object):
                         list[0] = i + 1; break
                 return list
         return [-1, -1]
+
+    # https://gengwg.blogspot.com/2018/03/leetcode-34-search-for-range.html
+    # use 2 binary searches
+    def searchRange(self, nums, target):
+        def findFirst(nums, target):
+            start = 0
+            end = len(nums) - 1
+            while start + 1 < end:
+                mid = (end - start) / 2 + start
+                if (nums[mid] < target):
+                    start = mid;
+                else:
+                    end = mid;
+            if nums[start] == target:
+                return start
+            if nums[end] == target:
+                return end
+            return -1
+
+        def findLast(nums, target):
+            start = 0
+            end = len(nums) - 1
+            while start + 1 < end:
+                mid = (end - start) / 2 + start
+                if (nums[mid] > target):
+                    end = mid;
+                else:
+                    start = mid;
+            if nums[end] == target:
+                return end
+            if nums[start] == target:
+                return start
+            return -1
+
+        if not nums:
+            return [-1, -1]
+        start = findFirst(nums, target)
+        if start == -1:
+            return [-1, -1]
+        end = findLast(nums, target)
+        return [start, end]
 
 if __name__ == '__main__':
     print Solution().searchRange([5, 7, 7, 8, 8, 10], 8)
