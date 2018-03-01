@@ -47,14 +47,18 @@ class Solution(object):
         if not A:
             return 0
 
+        # maintain two pointers
+        # last points to the last position of distinct elements
+        # i iterate over all elements
+        # when see a different element, increment last, and set its value to the new element
+        # this works because array is sorted
         last, i = 0, 1
         while i < len(A):
             if A[last] != A[i]:
                 last += 1
                 A[last] = A[i]
             i += 1
-
-        # print A
+        # array length is last index + 1
         return last + 1
 
     def removeDuplicates(self, A):
