@@ -23,21 +23,24 @@ class Solution(object):
         """
         maxlen = 0
         stack = []
-        last = -1
+        last = -1  # before 0
 
         for i in range(len(s)):
             if s[i] == "(":
                 stack.append(i)
             else:
-                if stack == []:
+                # record the position before the first (
+                if stack == []:      # e.g. )()()
                     last = i
                 else:
                     stack.pop()
-                    if stack == []:
+                    if stack == []:  # e.g. ()()
                         maxlen = max(maxlen, i - last)
-                    else:
-                        maxlen = max(maxlen, i - stack[len(stack) - 1])
+                    else:            # e.g. (())
+                        maxlen = max(maxlen, i - stack[-1])
+                        # maxlen = max(maxlen, i - stack[len(stack) - 1])
         return maxlen
+
 
 if __name__ == '__main__':
     print Solution().longestValidParentheses("(()")
