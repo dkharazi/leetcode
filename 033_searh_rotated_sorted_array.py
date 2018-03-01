@@ -21,28 +21,29 @@ class Solution(object):
         :rtype: int
         """
 
-        left = 0; right = len(nums) - 1
+        left = 0
+        right = len(nums) - 1
 
         while left <= right:
             mid = (left + right) / 2
             if target == nums[mid]:
                 return mid
 
-            if nums[mid] >= nums[left]:
+            # eventually target will be located in some ascending sub-sequence
+            if nums[mid] >= nums[left]: # left half in ascending order
                 if target < nums[mid] and target >= nums[left]:
                     right = mid - 1
-                else:
+                else:   # target is not in left half
                     left = mid + 1
-
-            elif nums[mid] < nums[right]:
+            else:       # right half in ascending order
                 if target > nums[mid] and target <= nums[right]:
                     left = mid + 1
-                else:
+                else:   # target not in right half
                     right = mid - 1
 
         return -1
 
 
 if __name__ == '__main__':
-    print Solution().search([4, 5, 6, 7, 0, 1, 2], 5)
+    print Solution().search([4, 5, 6, 7, 0, 1, 2], 1)
     print Solution().search([], 3)
