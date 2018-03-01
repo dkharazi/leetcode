@@ -29,13 +29,12 @@ class Solution(object):
 
         l, r = 0, len(nums) - 1
         while l <= r:
-            mid = (l + r) / 2
+            mid = (r - l) / 2 + l
             if target == nums[mid]:
-                print l, r
                 return mid
             elif target < nums[mid]:
                 r = mid - 1
-            else:
+            else: # target > nums[mid]
                 l = mid + 1
 
         # print l, r
