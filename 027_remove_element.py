@@ -46,7 +46,7 @@ class Solution(object):
     # l, r pointers move to the center
     def removeElement(self, nums, val):
 
-        l, r = 0, len(nums) -1
+        l, r = 0, len(nums) - 1
 
         while l <= r:
             if nums[l] == val:
@@ -63,8 +63,26 @@ class Solution(object):
         # or n[:r+1]
         return len(nums[:l])
 
+    # an improvement over last solution
+    # right pointer points to first non-target value
+    # this eliminates unnecessary operations exchanging l, r pointer values
+    def removeElement(self, nums, val):
+        l = 0
+        r = len(nums) - 1
+        while l <= r:
+            # move left pointer to first value same as target
+            if nums[l] != val:
+                l += 1
+            # move right pointer to first (count from right) value diff from target
+            elif nums[r] == val:
+                r -= 1
+            # now exchange the target val to the right
+            else:
+                nums[l], nums[r] = nums[r], nums[l]
+        return l
+
 
 if __name__ == '__main__':
-    print Solution().removeElement(nums = [3, 2, 2, 3], val = 3)
-    print Solution().removeElement(nums = [2, 5], val = 3)
-    print Solution().removeElement(nums = [], val = 3)
+    print Solution().removeElement(nums=[3, 2, 2, 3], val=3)
+    print Solution().removeElement(nums=[2, 5], val=3)
+    print Solution().removeElement(nums=[], val=3)
