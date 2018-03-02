@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 46. Permutations
 
@@ -15,9 +16,12 @@ For example,
   [3,2,1]
 ]
 
-"""
+递归（Recursion）
 
-import itertools
+记传入数组为nums，若nums的长度不大于1，则直接返回[nums]
+
+遍历nums，从中抽取一个数num，递归计算剩余数字组成的数组n，然后将num与结果合并
+"""
 
 
 class Solution(object):
@@ -39,7 +43,19 @@ class Solution(object):
                 res.append([nums[i]] + perm)
         return res
 
+        # import itertools
         # return list(itertools.permutations(nums))
+
+    # http://bookshadow.com/weblog/2016/09/09/leetcode-permutations/
+    def permute(self, nums):
+        if len(nums) <= 1:
+            return [nums]
+        res = []
+        for i, n in enumerate(nums):
+            x = nums[:i] + nums[i+1:]
+            for p in self.permute(x):
+                res.append(p + [n])
+        return res
 
 
 if __name__ == '__main__':
