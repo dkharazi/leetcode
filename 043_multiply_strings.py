@@ -60,7 +60,7 @@ class Solution(object):
         num1 = num1[::-1]; num2 = num2[::-1]
 
         arr = [0 for _ in range(len(num1) + len(num2))]
-        # multiply by digit and store result at arry[i+j]
+        # multiply by digit and store result at arr[i+j]
         for i in range(len(num1)):
             for j in range(len(num2)):
                 arr[i+j] += int(num1[i]) * int(num2[j])
@@ -70,8 +70,9 @@ class Solution(object):
         for i in range(len(arr)):
             digit = arr[i] % 10
             carry = arr[i] / 10
-            if i < len(arr) - 1:
+            if i < len(arr) - 1: # ?
                 arr[i + 1] += carry
+            # insert to the front, effectively reverse arr.
             ans.insert(0, str(digit))
 
         # remove leading 0s
