@@ -20,7 +20,14 @@ class Solution(object):
         """
         # unpack a list of arguments as positional arguments
         # then zip from the lists
-        # returns list of tuples (py2)
+        # returns list of tuples (py2), but leetcode accepts it
+        # >>> matrix
+        # [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        # >>> matrix[::-1]
+        # [[7, 8, 9], [4, 5, 6], [1, 2, 3]]
+        # >>> zip(*matrix[::-1])
+        # [(7, 4, 1), (8, 5, 2), (9, 6, 3)]
+
         matrix[:] = zip(*matrix[::-1])
         # or
         # matrix[:] = zip(*matrix.reverse())
