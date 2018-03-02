@@ -22,14 +22,19 @@ A solution set is:
 
 class Solution(object):
     # http://www.cnblogs.com/zuoyuan/p/3777590.html
+    # backtracking
     def dfs(self, candidates, target, start, valuelist):
         length = len(candidates)
+        # remove duplicates
         if target == 0 and valuelist not in Solution.ret:
             return Solution.ret.append(valuelist)
         for i in range(start, length):
             if target < candidates[i]:
                 return
-            self.dfs(candidates, target - candidates[i], i + 1, valuelist + [candidates[i]])
+            self.dfs(candidates,
+                     target - candidates[i],
+                     i + 1, # use i + 1 because each number only use once
+                     valuelist + [candidates[i]])
 
     def combinationSum(self, candidates, target):
         """

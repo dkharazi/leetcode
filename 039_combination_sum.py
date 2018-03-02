@@ -21,15 +21,8 @@ A solution set is:
 
 
 class Solution(object):
-    # http://www.cnblogs.com/zuoyuan/p/3777540.html
-    def dfs(self, candidates, target, start, valuelist):
-        length = len(candidates)
-        if target == 0:
-            return Solution.ret.append(valuelist)
-        for i in range(start, length):
-            if target < candidates[i]:
-                return
-            self.dfs(candidates, target - candidates[i], i, valuelist + [candidates[i]])
+    def __init__(self):
+        self.ret = []
 
     def combinationSum(self, candidates, target):
         """
@@ -38,11 +31,22 @@ class Solution(object):
         :rtype: List[List[int]]
         """
         candidates.sort()
-        Solution.ret = []
+        self.ret = []
         self.dfs(candidates, target, 0, [])
-        return Solution.ret
+        return self.ret
+
+    # http://www.cnblogs.com/zuoyuan/p/3777540.html
+    def dfs(self, candidates, target, start, valuelist):
+        length = len(candidates)
+        if target == 0:
+            return self.ret.append(valuelist)
+        for i in range(start, length):
+            if target < candidates[i]:
+                return
+            self.dfs(candidates, target - candidates[i], i, valuelist + [candidates[i]])
+
 
 if __name__ == '__main__':
     print Solution().combinationSum([2, 3, 6, 7], 7)
-    res = Solution().combinationSum(list(range(1,10)), 7)
+    res = Solution().combinationSum(list(range(1, 10)), 7)
     print list(filter(lambda x: len(x) == 3, res))
