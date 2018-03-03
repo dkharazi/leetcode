@@ -57,6 +57,17 @@ class Solution(object):
                 return 0
         return dp[len(s)]
 
+    # https://www.cnblogs.com/grandyang/p/4313384.html
+    def numDecodings(self, s):
+        if s == '' or s[0] == 0:
+            return 0
+        dp = [1] * (len(s) + 1)
+        for i in range(1, len(dp)):
+            dp[i] = 0 if s[i-1] == '0' else dp[i-1]
+            if (i > 1) and (s[i-2] == '1' or (s[i-2] == '2' and int(s[i-1]) <= 6)):
+                dp[i] += dp[i-2]    # add one more if s[i-2] = 1 or 2.
+        return dp[len(s)]
+
 
 if __name__ == '__main__':
     print Solution().numDecodings('80')
