@@ -45,14 +45,17 @@ class Solution(object):
     # 最终可以得到两者的和的字符串。
     def addBinary(self, a, b):
         res = ''
-        i, j, plus = len(a) - 1, len(b) - 1, 0
-        while i >= 0 or j >= 0 or plus == 1:
-            plus += int(a[i]) if i >= 0 else 0
-            plus += int(b[j]) if j >= 0 else 0
-            res = str(plus % 2) + res
-            i, j, plus = i - 1, j - 1, plus / 2
+        i = len(a) - 1
+        j = len(b) - 1
+        sum = 0
+        while i >= 0 or j >= 0 or sum == 1:
+            sum += int(a[i]) if i >= 0 else 0
+            sum += int(b[j]) if j >= 0 else 0
+            res = str(sum%2) + res # put remainder to front of result
+            i -= 1
+            j -= 1
+            sum /= 2    # add carryover to sum on next iteration
         return res
-
 
 if __name__ == '__main__':
     print Solution().addBinary('11', '1')
