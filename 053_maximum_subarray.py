@@ -49,7 +49,22 @@ class Solution:
 
         return MaxSum
 
-    ## Brutal force solution
+    # variant of above
+    def maxSubArray(self, A):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        cursum = A[0]
+        maxsum = A[0]
+        for x in A[1:]:
+            if cursum < 0:
+                cursum = 0
+            cursum = cursum + x
+            maxsum = max(maxsum, cursum)
+        return maxsum
+
+    # Brutal force solution
     def maxSubArray(self, A):
         return max([sum(i) for i in self.sublists(A)])
 
@@ -73,6 +88,15 @@ class Solution:
                 max_so_far = max_ending_here
 
         return max_so_far
+
+    # DP
+    # https://gengwg.blogspot.com/2018/03/leetcode-53-maximum-subarray.html
+    def maxSubArray(self, A):
+        dp = [0] * len(A)
+        dp[0] = A[0]
+        for i in range(1, len(A)):
+            dp[i] = A[i] + (0 if dp[i-1] < 0 else dp[i-1])
+        return max(dp)
 
 
 if __name__ == "__main__":
