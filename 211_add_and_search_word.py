@@ -29,7 +29,8 @@
 
 class TrieNode(object):
     def __init__(self):
-        self.children = dict()
+        self.children = {}
+        #self.children = dict()
         self.isWord = False
 
 
@@ -48,12 +49,10 @@ class WordDictionary(object):
         """
         node = self.root
         for letter in word:
-            child = node.children.get(letter)
-            if child is None:
-                child = TrieNode()
-                node.children[letter] = child
-            node = child
-        node.isWord = True
+            if node.children.get(letter) is None:
+                node.children[letter] = TrieNode()  # add a new trie node
+            node = node.children.get(letter)    # move node to next level
+        node.isWord = True  # set the last node to true
 
     def search(self, word):
         """
@@ -64,14 +63,15 @@ class WordDictionary(object):
         """
         return self.find(self.root, word)
 
+    # dfs
     def find(self, node, word):
-        if word == '':
+        if word == '':  # termination condition
             return node.isWord
-        if word[0] == '.':
+        if word[0] == '.':  # if . loop over all children
             for x in node.children:
-                if self.find(node.children[x], word[1:]):
+                if x and self.find(node.children[x], word[1:]):
                     return True
-        else:
+        else:   # normal find
             child = node.children.get(word[0])
             if child:
                 return self.find(child, word[1:])
