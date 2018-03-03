@@ -50,6 +50,18 @@ class Solution(object):
                 maxprofit = prices[i] - low
         return maxprofit
 
+    # enumerate dafa
+    # record both min price and max profit
+    def maxProfit(self, prices):
+        if not prices:
+            return 0
+        maxprofit = 0
+        minprice = prices[0]
+        for index, price in enumerate(prices):
+            minprice = min(minprice, price)
+            maxprofit = max(maxprofit, price-minprice)
+        return maxprofit
+
 
 if __name__ == '__main__':
     assert Solution().maxProfit([7, 1, 5, 3, 6, 4]) == 5
