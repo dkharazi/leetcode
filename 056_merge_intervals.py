@@ -47,21 +47,9 @@ for x in set(to_remove):
 # due to the intervals are pairs..
 print zip(ssf[0::2], ssf[1::2])
 
+
 # --------------------
 # Definition for an interval.
-# class Interval(object):
-#     def __init__(self, s=0, e=0):
-#         self.start = s
-#         self.end = e
-"""
-http://www.cnblogs.com/zuoyuan/p/3782028.html
-解题思路：
-先将区间按照每个start的值来排序，
-排好序以后判断一个区间的start值是否处在前一个区间中，
-如果在前一个区间中，那么合并；
-如果不在，就将新区间添加。
-"""
-
 
 class Interval(object):
     def __init__(self, s=0, e=0):
@@ -77,6 +65,13 @@ class Solution(object):
         """
         :type intervals: List[Interval]
         :rtype: List[Interval]
+
+        http://www.cnblogs.com/zuoyuan/p/3782028.html
+        解题思路：
+        先将区间按照每个start的值来排序，
+        排好序以后判断一个区间的start值是否处在前一个区间中，
+        如果在前一个区间中，那么合并；
+        如果不在，就将新区间添加。
         """
         intervals.sort(key=lambda x: x.start)
         length = len(intervals)
@@ -92,8 +87,32 @@ class Solution(object):
                     res.append(intervals[i])
         return res
 
+    # scanning line algorithm
+    # https://gengwg.blogspot.com/2018/03/leetcode-56-merge-intervals.html
+    def merge(self, intervals):
+        if not intervals:
+            return []
+        # sort according to x.start
+        intervals.sort(key=lambda x: x.start)
+        res = []
+        start = intervals[0].start
+        end = intervals[0].end
+        for interval in intervals:
+            if interval.start <= end:  # overlaps
+                end = max(end, interval.end)
+            else:
+                res.append(Interval(start, end)) # add current merged interval
+                # reset start and end to new interval
+                start = interval.start
+                end = interval.end
+        res.append(Interval(start, end))    # must not miss last interval!
+        return res
+
 
 if __name__ == '__main__':
     intervals = [Interval(1, 3), Interval(2, 6), Interval(8, 10), Interval(15, 18)]
+    for interval in intervals:
+        print interval,
+    print
     for interval in Solution().merge(intervals):
         print interval,
