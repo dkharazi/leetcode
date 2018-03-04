@@ -69,6 +69,7 @@ class WordDictionary(object):
             return node.isWord
         if word[0] == '.':  # if . loop over all children
             for x in node.children:
+                # if any of children returns true, return true
                 if x and self.find(node.children[x], word[1:]):
                     return True
         else:   # normal find
