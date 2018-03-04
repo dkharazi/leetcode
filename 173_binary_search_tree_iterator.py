@@ -67,8 +67,13 @@ class BSTIterator(object):
 
 
 if __name__ == '__main__':
-    pass
-
+    root = TreeNode(5)
+    root.left = TreeNode(2)
+    root.right = TreeNode(6)
+    root.left.left = TreeNode(1)
+    root.left.right = TreeNode(3)
     # Your BSTIterator will be called like this:
-    # i, v = BSTIterator(root), []
-    # while i.hasNext(): v.append(i.next())
+    i, v = BSTIterator(root), []
+    while i.hasNext():
+        v.append(i.next())
+    print v
