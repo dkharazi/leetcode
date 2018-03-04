@@ -24,15 +24,20 @@ Could you come up with an one-pass algorithm using only constant space?
 
 
 class Solution(object):
+    # two pass
     def sortColors(self, nums):
         """
         :type nums: List[int]
         :rtype: void Do not return anything, modify nums in-place instead.
         """
-        count = {0: 0, 1: 0, 2: 0}
+        # dictionary counting number of 0's, 1's, and 2's
+        count = {0: 0,
+                 1: 0,
+                 2: 0}
 
-        for i in nums:
-            count[i] += 1
+        for num in nums:
+            count[num] += 1
+
         # for i in nums:
         #     if i ==0:
         #         count[0]+=1
@@ -41,11 +46,11 @@ class Solution(object):
         #     if i ==2:
         #         count[2]+=2
 
-        nums = []
+        A = []
         for i in range(3):
-            nums += [i] * count[i]
-
-        return nums
+            A += [i] * count[i]
+        # overwrite original array
+        nums[:] = A[:]
 
     def sortColors(self, nums):
         """
@@ -64,11 +69,11 @@ class Solution(object):
         碰到1继续向后遍历。
         有点类似快速排序的分割数组这一步。
         """
-        if nums == []:
+        if not nums:
             return
-
-        p0 = 0;
-        p2 = len(nums) - 1;
+        # 3 pointers
+        p0 = 0  # all elements left of p0 are 0
+        p2 = len(nums) - 1  # all elements right of p2 are 0
         i = 0
         while i <= p2:
             if nums[i] == 2:
@@ -80,9 +85,9 @@ class Solution(object):
             elif nums[i] == 0:
                 nums[i], nums[p0] = nums[p0], nums[i]
                 p0 += 1
-                # advance i here
+                # advance i here because position p0 already known as 1
                 i += 1
-            else:  # n[i]==1, do nothing
+            else:  # n[i]==1, no swap. increment i.
                 i += 1
 
         return nums

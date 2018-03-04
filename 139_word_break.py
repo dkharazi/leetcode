@@ -23,14 +23,15 @@ class Solution(object):
         :type wordDict: List[str]
         :rtype: bool
         """
-        dp = [False for _ in range(len(s) + 1)]
-        dp[0] = True
-        for i in range(1, len(s) + 1):
+        dp = [False for _ in range(len(s) + 1)]  # len+1
+        dp[0] = True  # dp[0] is always True to initiate the process
+        for i in range(1, len(dp)):  # i starts at 1
             for k in range(i):
                 if dp[k] and s[k:i] in wordDict:
                     dp[i] = True
-
-        return dp[len(s)]
+        return dp[-1]
+        # print dp
+        # return dp[len(s)]
 
 
 if __name__ == '__main__':
