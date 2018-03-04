@@ -38,7 +38,7 @@ class Solution(object):
             for i in range(start, len(nums)):
                 dfs(depth + 1, i + 1, valuelist + [nums[i]])
 
-        nums.sort()
+        # nums.sort()
         res = []
         dfs(0, 0, [])
         return res
@@ -52,12 +52,13 @@ class Solution(object):
         在这里尝试顺序的来解决，通过不断迭代的方法来求所有的子集。
         现在举个例子，集合[1]有[[],[1]]两个子集，
         当向其中添加一个元素时，[1,2]有[[],[1],[2],[1,2]]四个子集，
-        可以看出来，ejfhefecejekvgtlhkjvklrkgjefrhegribfkcttelnn
+        可以看出来，
         ，是在原来子集的基础上，
         添加原子集中所有元素加上新元素的总集合。
         为了每个子集中的元素都是不降序的，要先把所有元素都排序。
         """
         res = [[]]
+        # looks no need to sort the array
         # for num in sorted(nums):
         for num in nums:
             res += [item + [num] for item in res]
