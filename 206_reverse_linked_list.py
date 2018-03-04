@@ -72,13 +72,13 @@ class Solution(object):
 
 class Solution2:
     def reverseList(self, head):
-        curt = None
+        prev = None
         while head:
             temp = head.next
-            head.next = curt
-            curt = head
+            head.next = prev
+            prev = head
             head = temp
-        return curt
+        return prev
 
 
 if __name__ == "__main__":
