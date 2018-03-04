@@ -47,15 +47,15 @@ class Solution(object):
         """
         return self.isValidBSTRecur(root, float("-inf"), float("inf"))
 
-    def isValidBSTRecur(self, root, min, max):
-        if root is None:
+    def isValidBSTRecur(self, node, min, max):
+        if node is None:
             return True
 
-        if root.val <= min or root.val >= max:
+        if node.val <= min or node.val >= max:
             return False
 
-        return self.isValidBSTRecur(root.left, min, root.val) and \
-               self.isValidBSTRecur(root.right, root.val, max)
+        return self.isValidBSTRecur(node.left, min, node.val) and \
+               self.isValidBSTRecur(node.right, node.val, max)
 
 
 if __name__ == "__main__":
