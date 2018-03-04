@@ -49,11 +49,38 @@ class Solution(object):
         if root.val < p.val and root.val < q.val:
             return self.lowestCommonAncestor(root.right, p, q)
 
+    # a simplified version of last solution
+    def lowestCommonAncestor(self, root, p, q):
+        if root.val > max(p.val, q.val):
+            return self.lowestCommonAncestor(root.left, p, q)
+        elif root.val < min(p.val, q.val):
+            return self.lowestCommonAncestor(root.right, p, q)
+        else:   # root val is between p and q
+            return root
+
     def lowestCommonAncestor(self, root, p, q):
         s, b = sorted([p.val, q.val])
         while not s <= root.val <=b:
             root = root.left if s <= root.val else root.right
         return root
+
+    # another version of above solution
+    def lowestCommonAncestor(self, root, p, q):
+        # assume p < q
+        if p.val > q.val:
+            return self.lowestCommonAncestor(root, q, p)
+
+        while root:
+            # if node is larger than max(p,q), lca is on left
+            if root.val > q.val:
+                root = root.left
+            # if node is smaller than min(p,q), lca is on right
+            elif root.val < p.val:
+                root = root.right
+            # if node is between (p,q), node is lca
+            else:
+                return root
+
 
 if __name__ == "__main__":
     root = TreeNode(6)
