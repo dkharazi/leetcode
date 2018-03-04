@@ -46,6 +46,18 @@ class Trie(object):
                 return False
         return node.isWord
 
+    # iterative dfs
+    def search(self, word):
+        return self.find(self.root, word)
+
+    def find(self, node, word):
+        if word == '':
+            return node.isWord
+        else:
+            if node.children.get(word[0]):
+                return self.find(node.children.get(word[0]), word[1:])
+        return False
+
     def startsWith(self, prefix):
         """
         Returns if there is any word in the trie that starts with the given prefix.
