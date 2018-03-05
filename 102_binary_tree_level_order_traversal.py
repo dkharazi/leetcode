@@ -2,7 +2,8 @@
 """
 102. Binary Tree Level Order Traversal
 
-Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
+Given a binary tree, return the level order traversal of its nodes' values.
+(ie, from left to right, level by level).
 
 For example:
 Given binary tree [3,9,20,null,null,15,7],
@@ -36,6 +37,7 @@ class Solution(object):
         用深度优先搜索（DFS），
         节点的深度与输出结果数组的下标相对应。
         注意在递归的时候要保存每次访问的节点值。
+        use preorder traversal to implement level order traversal
         :type root: TreeNode
         :rtype: List[List[int]]
         """
@@ -54,3 +56,22 @@ class Solution(object):
             res[level].append(root.val)
             self.preorder(root.left, level + 1, res)
             self.preorder(root.right, level + 1, res)
+
+    # use queue
+    def levelOrder(self, root):
+        res = []
+        if not root:
+            return res
+        queue = [root]  # store nodes at next level
+        while queue:
+            level = []  # store values at each level
+            # for i, _ in enumerate(queue): # wrong
+            for _ in range(len(queue)):
+                x = queue.pop(0)
+                level.append(x.val)
+                if x.left:
+                    queue.append(x.left)
+                if x.right:
+                    queue.append(x.right)
+            res.append(level)
+        return res
