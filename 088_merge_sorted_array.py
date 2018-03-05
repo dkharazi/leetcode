@@ -21,6 +21,7 @@ http://blog.csdn.net/coder_orz/article/details/51681144
 
 
 class Solution(object):
+    # 3 pointers
     def merge(self, nums1, m, nums2, n):
         """
         :type nums1: List[int]
@@ -29,6 +30,7 @@ class Solution(object):
         :type n: int
         :rtype: void Do not return anything, modify nums1 in-place instead.
         """
+        # starting right end of array, no need worry about overwriting nums1
         p, q, k = m - 1, n - 1, m + n - 1
         while p >= 0 and q >= 0:
             if nums1[p] > nums2[q]:
@@ -42,6 +44,7 @@ class Solution(object):
         # move everything left in nums2 to nums1
         nums1[:q + 1] = nums2[:q + 1]
 
+    # using 2 pointers
     def merge(self, nums1, m, nums2, n):
         p, q = m - 1, n - 1
         while p >= 0 and q >= 0:
@@ -53,8 +56,8 @@ class Solution(object):
                 q -= 1
         nums1[:q + 1] = nums2[:q + 1]
 
-
 if __name__ == '__main__':
     nums1 = [1, 3, 5, 7, 11] + 3 * [0]
     Solution().merge(nums1, 5, [4, 6, 9], 3)
     print nums1
+
