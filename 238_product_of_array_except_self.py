@@ -14,6 +14,7 @@
 
 
 class Solution(object):
+    # use division
     def productExceptSelf(self, nums):
         """
         :type nums: List[int]
@@ -22,6 +23,7 @@ class Solution(object):
         prod = reduce(lambda x, y: x * y, nums)
         return [prod/n for n in nums]
 
+    # TLE
     def productExceptSelf(self, nums):
         return [reduce(lambda x, y: x * y, (nums[:i] + nums[(i+1):])) for i in range(len(nums))]
 
@@ -35,18 +37,19 @@ class Solution(object):
         size = len(nums)
         output = [1] * size
         left = right = 1
-        # 0 --> N-2
-        # [1, x0, x0*x1, x0*x1*x2]
+        # output: [x3*x2*x1, x3*x2*x0, x3*x1*x0, x2*x1*x0]
+        #           1 --> N-1
+        # left: [1, x0, x0*x1, x0*x1*x2]
         for i in range(size - 1):
             left *= nums[i]
             output[i + 1] *= left
-        # N-1 --> 1
-        # [x3*x2*x1, x3*x2, x3, 1]
+        #         0 <-- N-2
+        # right: [x3*x2*x1, x3*x2, x3, 1]
         for i in range(size - 1, 0, -1):
             right *= nums[i]
             output[i - 1] *= right
-        # [x3*x2*x1, x3*x2*x0, x3*x1*x0, x2*x1*x0]
         return output
+
 
 if __name__ == "__main__":
     print Solution().productExceptSelf([1,2,3,4])
