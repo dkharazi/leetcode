@@ -28,7 +28,8 @@ class Solution(object):
         """
         res = [[]]
         # need sort array first for remove duplicates
-        nums = sorted(nums)
+        nums.sort()
+        # nums = sorted(nums)
         for num in nums:
             # add one condition to original list comprehension
             res += [[num] + item for item in res if [num] + item not in res]
