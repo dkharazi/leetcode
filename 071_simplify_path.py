@@ -24,11 +24,9 @@ Unix文件的根目录为"/"，"."表示当前目录，".."表示上级目录。
 例如：
 
 输入1：
-
 /../a/b/c/./..
 
 输出1：
-
 /a/b
 
 模拟整个过程：
@@ -55,6 +53,11 @@ Unix文件的根目录为"/"，"."表示当前目录，".."表示上级目录。
 
 
 class Solution(object):
+    # python has built-in function for this
+    def simplifyPath(self, path):
+        import os.path
+        return os.path.normpath(path)
+
     def simplifyPath(self, path):
         """
         :type path: str
@@ -90,7 +93,29 @@ class Solution(object):
             res += "/" + i
         return res
 
+    # https://gengwg.blogspot.com/2018/03/leetcode-71-simplify-path.html
+    def simplifyPath(self, path):
+        stack = []
+        res = ''
+        # split path by / and filter out empty and .
+        # so that only alphanumerical and .. left
+        items = filter(lambda x: x not in ['', '.'], path.split('/'))
+        for item in items:
+            if item == '..':
+                if stack:
+                    stack.pop()
+            else:
+                stack.append(item)
+
+        if not stack:
+            return "/"
+        # construct abs path
+        for item in stack:
+            res += "/" + item
+        return res
+
 
 if __name__ == '__main__':
-    print Solution().simplifyPath("/../a/b/c/./..")
-    print Solution().simplifyPath("/")
+    print Solution().simplifyPath("/../a//b/c/./..")
+    print Solution().simplifyPath("/../")
+    print Solution().simplifyPath(".")
