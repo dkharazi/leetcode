@@ -24,10 +24,11 @@ http://www.cnblogs.com/zuoyuan/p/3782048.html
 
 
 # Definition for an interval.
-# class Interval(object):
-#     def __init__(self, s=0, e=0):
-#         self.start = s
-#         self.end = e
+class Interval(object):
+    def __init__(self, s=0, e=0):
+        self.start = s
+        self.end = e
+
 
 class Solution(object):
     def insert(self, intervals, newInterval):
@@ -51,3 +52,22 @@ class Solution(object):
                     res.append(intervals[i])
 
         return res
+
+    # https://gengwg.blogspot.com/2018/03/leetcode-57-insert-interval-ep86.html
+    def insert(self, intervals, newInterval):
+        l = []
+        r = []
+        start = newInterval.start
+        end = newInterval.end
+        for interval in intervals:
+            # left intervals
+            if interval.end < newInterval.start:
+                l.append(interval)
+            # right intervals
+            elif interval.start > newInterval.end:
+                r.append(interval)
+            # overlapping intervals
+            else:
+                start = min(interval.start, start)
+                end = max(interval.end, end)
+        return l + [Interval(start,end)] + r
