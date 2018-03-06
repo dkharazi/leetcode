@@ -29,6 +29,7 @@ class Solution(object):
             li.append(head.val)
             head = head.next
 
+        # or: return li == li[::-1]
         length = len(li)
         for i in range(length/2):
             if li[i] != li[length - i - 1]:
@@ -47,7 +48,7 @@ class Solution(object):
         # push first half into stack
         # must have fast.next
         while fast and fast.next:
-            li.insert(0, slow.va)
+            li.insert(0, slow.val)
             slow = slow.next
             fast = fast.next.next
 
@@ -57,7 +58,7 @@ class Solution(object):
 
         # pop stack and compare with 2nd half
         for x in li:
-            if x ! = slow.val:
+            if x != slow.val:
                 return False
             slow = slow.next
 
@@ -94,8 +95,4 @@ class Solution(object):
             p.next = new_head
             new_head = p
         return new_head
-
-
-
-
 
