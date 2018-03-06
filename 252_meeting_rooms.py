@@ -9,10 +9,11 @@
 # return false.
 
 
-# class Interval(object):
-#     def __init__(self, s=0, e=0):
-#         self.start = s
-#         self.end = e
+class Interval(object):
+    def __init__(self, s=0, e=0):
+        self.start = s
+        self.end = e
+
 
 class Solution(object):
     # equivalent to no overlapping between intervals
@@ -25,7 +26,11 @@ class Solution(object):
             return True
         intervals.sort(key=lambda x: x.start)
         for i in range(1, len(intervals)):
-            if intervals[i].start < intervals[i-1].end:
+            if intervals[i].start < intervals[i - 1].end:
                 return False
         return True
 
+
+if __name__ == '__main__':
+    intervals = [Interval(0, 30), Interval(5, 10), Interval(15, 20)]
+    print Solution().canAttendMeetings(intervals)
