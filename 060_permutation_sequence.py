@@ -20,6 +20,11 @@ Note: Given n will be between 1 and 9 inclusive.
 
 
 class Solution(object):
+    # itertools.permutations TLE
+    def getPermutation(self, n, k):
+        import itertools
+        return ''.join([str(x) for x in list(itertools.permutations(range(1, n + 1)))[k - 1]])
+
     def getPermutation(self, n, k):
         """
         :type n: int
@@ -40,7 +45,17 @@ class Solution(object):
             nums.remove(nums[j])
             k = (k - 1) % fac[n - i - 1] + 1
 
+        # another way
+        # k = k - 1
+        # for i in range(n, 0, -1):
+        #     index = k / fac[i - 1]
+        #     k = k % fac[i - 1]
+        #     ans += nums[index]
+        #     nums.remove(nums[index])
+
         return ans
+
 
 if __name__ == '__main__':
     print Solution().getPermutation(6, 40)
+    print Solution().getPermutation(8, 15025)
