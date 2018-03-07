@@ -21,6 +21,7 @@ isMatch("ab", ".*") ? true
 isMatch("aab", "c*a*b") ? true
 """
 
+
 # https://gengwg.blogspot.com/2017/08/leetcode-10-regular-expression-matching.html
 class Solution(object):
     def isMatch(self, s, p):
@@ -33,13 +34,12 @@ class Solution(object):
             return not s
 
         if p[-1] == '*':
-            if s and (s[-1] == p[-2] or p[-2] =='.'):
+            if s and (s[-1] == p[-2] or p[-2] == '.'):
                 return self.isMatch(s, p[:-2]) or self.isMatch(s[:-1], p)
             else:
                 return self.isMatch(s, p[:-2])
-
         else:
-            if s and (s[-1] == p[-1] or p[-1] =='.'):
+            if s and (s[-1] == p[-1] or p[-1] == '.'):
                 return self.isMatch(s[:-1], p[:-1])
             else:
                 return False
@@ -51,4 +51,5 @@ if __name__ == '__main__':
     print Solution().isMatch("aaa", "aa")
     print Solution().isMatch("aa", "a*")
     print Solution().isMatch("aa", ".*")
+    print Solution().isMatch("ab", ".*")
     print Solution().isMatch("aab", "c*a*b")

@@ -37,6 +37,18 @@ class Solution(object):
             return 0
         return (num - 1) % 9 + 1
 
+    # easier to understand
+    def addDigits(self, num):
+        sum = 0
+        while num > 0:
+            sum += num%10
+            num /= 10
+        if sum >= 10:
+            return self.addDigits(sum)
+        else:
+            return sum
+
+
 print Solution().addDigits(38)
 print Solution().addDigits(8)
 print Solution().addDigits(0)
