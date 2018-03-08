@@ -50,8 +50,10 @@ class Solution(object):
 
     # http://www.tangjikai.com/algorithms/leetcode-62-unique-path
     def uniquePaths(self, m, n):
+        # m rows, n columns
         dp = [[1] * n for _ in range(m)]
 
+        # index starting at 1 because we need refer to i-1
         for i in range(1, m):
             for j in range(1, n):
                 dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
