@@ -37,9 +37,7 @@ class Solution(object):
         :rtype: ListNode
         """
 
-        if k == 0:
-            return head
-        if head == None:
+        if k == 0 or head is None:
             return head
 
         dummy = p = ListNode(0)
@@ -48,11 +46,18 @@ class Solution(object):
         while p.next:
             p = p.next
             count += 1
+        # after while loop, p points to last node (before None).
+        # redirect last node to head. now it's a circle
+        # p.next = head
         p.next = dummy.next
 
+        # mod in case k is larger than length of list
         step = count - (k % count)
-        for i in range(0, step):
+        # move p to the node to break
+        for _ in range(0, step):
             p = p.next
+        # new head point to the next node
         head = p.next
+        # current node point to None
         p.next = None
         return head
