@@ -31,8 +31,10 @@ class Solution(object):
 
         # set its row and column to 0.
         for x in l:
+            # set column
             for i in range(len(matrix)):
                 matrix[i][x[1]] = 0
+            # set row
             for j in range(len(matrix[0])):
                 matrix[x[0]][j] = 0
 
@@ -61,5 +63,5 @@ if __name__ == '__main__':
     ]
 
     Solution().setZeroes(A)
-
-    print A
+    import pprint
+    pprint.pprint(A)
