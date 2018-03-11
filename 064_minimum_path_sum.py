@@ -29,13 +29,14 @@ class Solution(object):
 
         for i in range(m):
             for j in range(n):
+                # first element is first element in grid
                 if i == 0 and j == 0:
                     dp[i][j] = grid[0][0]
-                elif i == 0:
+                elif i == 0:  # first column
                     dp[i][j] = dp[i][j - 1] + grid[i][j]
-                elif j == 0:
+                elif j == 0:  # first row
                     dp[i][j] = dp[i - 1][j] + grid[i][j]
-                else:
+                else:   # either top or left sum plus current position
                     dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j]
         return dp[-1][-1]
 
