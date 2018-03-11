@@ -37,7 +37,6 @@ class Solution(object):
 
         while start <= end:
             mid = (start + end) / 2
-
             if nums[mid] == target:
                 return True
 

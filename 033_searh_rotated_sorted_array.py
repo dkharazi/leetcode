@@ -21,25 +21,25 @@ class Solution(object):
         :rtype: int
         """
 
-        left = 0
-        right = len(nums) - 1
+        start = 0
+        end = len(nums) - 1
 
-        while left <= right:
-            mid = (left + right) / 2
-            if target == nums[mid]:
+        while start <= end:
+            mid = (start + end) / 2
+            if nums[mid] == target:
                 return mid
 
             # eventually target will be located in some ascending sub-sequence
-            if nums[mid] >= nums[left]: # left half in ascending order
-                if target < nums[mid] and target >= nums[left]:
-                    right = mid - 1
+            elif nums[start] <= nums[mid]: # left half in ascending order
+                if nums[start] <= target <= nums[mid]:
+                    end = mid - 1
                 else:   # target is not in left half
-                    left = mid + 1
+                    start = mid + 1
             else:       # right half in ascending order
-                if target > nums[mid] and target <= nums[right]:
-                    left = mid + 1
+                if nums[mid] <= target <= nums[end]:
+                    start = mid + 1
                 else:   # target not in right half
-                    right = mid - 1
+                    end = mid - 1
 
         return -1
 
