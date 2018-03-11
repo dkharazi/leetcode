@@ -35,6 +35,23 @@ class Solution(object):
 
         return digits
 
+    # using extra space
+    def plusOne(self, digits):
+        """
+        :type digits: List[int]
+        :rtype: List[int]
+        """
+        carry = 1
+        n = len(digits)
+        res = []
+        for i in range(n - 1, -1, -1):
+            digit = (digits[i] + carry) % 10
+            carry = (digits[i] + carry) / 10
+            res.insert(0, digit)
+        if carry:
+            res.insert(0, carry)
+        return res
+
 
 if __name__ == "__main__":
     print Solution().plusOne(digits=[9, 9, 9, 9])
