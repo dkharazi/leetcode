@@ -46,6 +46,24 @@ class Solution(object):
             valuelist.append(node.val)
             self.inorder_recursive(node.right, valuelist)
 
+    # https://gengwg.blogspot.com/2018/03/leetcode-94-binary-tree-inorder.html
+    # binary tree inorder traversal using stack
+    def inorderTraversal(self, root):
+        if not root:
+            return []
+
+        res = []
+        stack = []
+        cur = root
+        while cur or stack:
+            while cur:
+                stack.append(cur)
+                cur = cur.left
+            cur = stack.pop()
+            res.append(cur.val)
+            cur = cur.right
+        return res
+
 
 if __name__ == '__main__':
     # Driver code
