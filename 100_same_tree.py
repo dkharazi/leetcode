@@ -69,12 +69,32 @@ class Solution(object):
     def isSameTree(self, p, q):
         if p is None and q is None:
             return True
-        elif p is not None and q is not None:
+        # elif p is not None and q is not None:
+        elif p and q:
             return p.val == q.val and self.isSameTree(p.left, q.left) \
                    and self.isSameTree(p.right, q.right)
         else:
-            # (p is not None, q is None) || (p is None and q is not None)
+            # p.val != q.val || (p is not None, q is None) || (p is None and q is not None)
             return False
+
+    # https://gengwg.blogspot.com/2018/03/leetcode-100-same-tree.html
+    def isSameTree(self, p, q):
+        """
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: bool
+        """
+        # order of this and next line can not be exchanged!
+        if p is None and q is None:
+            return True
+        # this line includes last case
+        if p is None or q is None:
+            return False
+        if p.val != q.val:
+            return False
+        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+
+
 
 if __name__ == "__main__":
     p = TreeNode(0)
