@@ -40,11 +40,11 @@ class Solution(object):
         self.inorder_recursive(root, res)
         return res
 
-    def inorder_recursive(self, root, valuelist):
-        if root:
-            self.inorder_recursive(root.left, valuelist)
-            valuelist.append(root.val)
-            self.inorder_recursive(root.right, valuelist)
+    def inorder_recursive(self, node, valuelist):
+        if node:
+            self.inorder_recursive(node.left, valuelist)
+            valuelist.append(node.val)
+            self.inorder_recursive(node.right, valuelist)
 
 
 if __name__ == '__main__':
