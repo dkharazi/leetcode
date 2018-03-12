@@ -53,6 +53,29 @@ class Solution(object):
 
         return dummy.next
 
+    # https://gengwg.blogspot.com/2018/03/leetcode-92-reverse-linked-list-ii.html
+    # two pointers
+    def reverseBetween(self, head, m, n):
+        if head is None or head.next is None:
+            return head
+
+        dummy = ListNode(0)
+        dummy.next = head
+        prev = dummy
+        curr = dummy.next
+
+        for _ in range(m-1):
+            curr = curr.next
+            prev = prev.next
+
+        for _ in range(n-m):
+            temp = curr.next        # save next
+            curr.next = temp.next   # point current to next.next
+            temp.next = prev.next   # reverse: point next.next to next
+            prev.next = temp        # point prev to temp
+
+        return dummy.next
+
 
 if __name__ == '__main__':
     head = ListNode(1)
