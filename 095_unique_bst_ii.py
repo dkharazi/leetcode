@@ -47,16 +47,17 @@ class Solution(object):
             return [None]
 
         res = []
-        for rootval in range(start, end+1):
-            ltree = self.dfs(start, rootval-1)
-            rtree = self.dfs(rootval+1, end)
-            for l in ltree:
-                for r in rtree:
+        for rootval in range(start, end + 1):
+            ltree = self.dfs(start, rootval - 1)
+            rtree = self.dfs(rootval + 1, end)
+            for left in ltree:
+                for right in rtree:
                     root = TreeNode(rootval)
-                    root.left = l
-                    root.right = r
+                    root.left = left
+                    root.right = right
                     res.append(root)
         return res
+
 
 if __name__ == '__main__':
     print Solution().generateTrees(3)
