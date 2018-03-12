@@ -35,7 +35,7 @@ class Solution(object):
         :rtype: ListNode
         """
 
-        if head == None or head.next == None:
+        if head is None or head.next is None:
             return head
 
         dummy = ListNode(0)
