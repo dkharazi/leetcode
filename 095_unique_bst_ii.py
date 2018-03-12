@@ -38,6 +38,8 @@ class Solution(object):
         :param n: int
         :return: List[TreeNode]
         """
+        if n == 0:
+            return []
         return self.dfs(1, n)
 
     def dfs(self, start, end):
@@ -45,14 +47,14 @@ class Solution(object):
             return [None]
 
         res = []
-        for rootval in range(start, end + 1):
-            LeftTree = self.dfs(start, rootval - 1)
-            RightTree = self.dfs(rootval + 1, end)
-            for i in LeftTree:
-                for j in RightTree:
+        for rootval in range(start, end+1):
+            ltree = self.dfs(start, rootval-1)
+            rtree = self.dfs(rootval+1, end)
+            for l in ltree:
+                for r in rtree:
                     root = TreeNode(rootval)
-                    root.left = i
-                    root.right = j
+                    root.left = l
+                    root.right = r
                     res.append(root)
         return res
 
