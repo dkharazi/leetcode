@@ -33,14 +33,19 @@ class Solution(object):
         :rtype: List[int]
         """
         res = []
+        # arguments are passed by assignment.
+        # list is mutable object.
+        # the method gets a reference to that same object.
+        # thus res is changed inside the function.
         self.inorder_recursive(root, res)
         return res
 
-    def inorder_recursive(self, root, res):
+    def inorder_recursive(self, root, valuelist):
         if root:
-            self.inorder_recursive(root.left, res)
-            res.append(root.val)
-            self.inorder_recursive(root.right, res)
+            self.inorder_recursive(root.left, valuelist)
+            valuelist.append(root.val)
+            self.inorder_recursive(root.right, valuelist)
+
 
 if __name__ == '__main__':
     # Driver code
