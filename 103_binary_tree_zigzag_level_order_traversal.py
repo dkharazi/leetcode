@@ -20,6 +20,7 @@ return its zigzag level order traversal as:
   [15,7]
 ]
 
+a modification from 102
 author: gengwg
 """
 
@@ -44,7 +45,8 @@ class Solution(object):
 
     def preorder(self, root, level, res):
         if root:
-            if len(res) < level + 1:
+            # create an empty list for new level
+            if len(res) <= level:
                 res.append([])
             if level % 2 == 0:
                 # even level, append at the end

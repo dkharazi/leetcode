@@ -51,3 +51,13 @@ class Solution(object):
         if p and q and p.val == q.val:
             return self.helper(p.left, q.right) and self.helper(p.right, q.left)
         return False
+
+    # ref 100
+    def helper(self, p, q):
+        if p is None and q is None:
+            return True
+        if p is None or q is None:
+            return False
+        if p.val != q.val:
+            return False
+        return self.helper(p.left, q.right) and self.helper(p.right, q.left)
