@@ -33,7 +33,6 @@ class Solution(object):
         :type head: ListNode
         :rtype: TreeNode
         """
-
         p = head
         array = []
         # push linked list values to array
@@ -44,11 +43,34 @@ class Solution(object):
         return self.sortedArrayToBST(array)
 
     def sortedArrayToBST(self, array):
-        if len(array) == 0:
+        n = len(array)
+        if n == 0:
             return None
-        if len(array) == 1:
+        if n == 1:
             return TreeNode(array[0])
-        root = TreeNode(array[len(array) / 2])
-        root.left = self.sortedArrayToBST(array[:len(array) / 2])
-        root.right = self.sortedArrayToBST(array[len(array) / 2 + 1:])
+        root = TreeNode(array[n / 2])
+        root.left = self.sortedArrayToBST(array[:n/2])
+        root.right = self.sortedArrayToBST(array[n/2 + 1:])
+        return root
+
+    # two pointers
+    # https://gengwg.blogspot.com/2018/03/leetcode-109-convert-sorted-list-to.html
+    def sortedListToBST(self, head):
+        if head is None:
+            return None
+        return self.helper(head, None)
+
+    def helper(self, head, tail):
+        if head == tail:
+            return None
+        slow = head
+        fast = head
+        # slow fast pointers to find middle of list
+        while fast != tail and fast.next != tail:
+            fast = fast.next.next
+            slow = slow.next
+
+        root = TreeNode(slow.val)
+        root.left = self.helper(head, slow)
+        root.right = self.helper(slow.next, tail)
         return root
