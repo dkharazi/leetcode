@@ -35,11 +35,16 @@ class Solution:
     def isBalanced(self, root):
         if root is None:
             return True
+        if abs(self.Height(root.left) - self.Height(root.right)) > 1:
+            return False
+        return self.isBalanced(root.left) and self.isBalanced(root.right)
+
+        """
         if abs(self.Height(root.left) - self.Height(root.right)) <= 1:
             return self.isBalanced(root.left) and self.isBalanced(root.right)
         else:
             return False
-
+        """
 
 if __name__ == "__main__":
     root = TreeNode(0)
