@@ -53,7 +53,7 @@ class Solution(object):
                     stack.append(first - second)
                 elif token == '*':
                     stack.append(first * second)
-                else:
+                else: # toen == '/'
                     if first * second < 0:
                         # / first, then -
                         stack.append(-(abs(first) // abs(second)))
