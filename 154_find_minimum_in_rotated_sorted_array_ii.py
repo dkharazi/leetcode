@@ -20,14 +20,14 @@ class Solution(object):
         :rtype: int
         """
         l, r = 0, len(nums) - 1
-        while l < r and nums[l] > nums[r]:
+        while l < r:
             m = (l + r) / 2
             if nums[m] < nums[r]:
                 r = m
             elif nums[m] > nums[r]:
                 l = m + 1
             else:
-                l += 1
+                r -= 1
         return nums[l]
 
 
