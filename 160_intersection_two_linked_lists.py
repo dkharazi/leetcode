@@ -78,6 +78,7 @@ class Solution:
         p = headA
         q = headB
 
+        # get length of both lists
         lengthA = 0
         lengthB = 0
         while p:
@@ -87,6 +88,7 @@ class Solution:
             q = q.next
             lengthB += 1
 
+        # move the longer one diff steps first
         p = headA
         q = headB
         if lengthA > lengthB:
@@ -96,6 +98,7 @@ class Solution:
             for _ in range(lengthB - lengthA):
                 q = q.next
 
+        # move together until equals
         while p and q:
             if p == q:
                 return p
