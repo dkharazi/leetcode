@@ -20,6 +20,7 @@ class Solution:
         max_tmp = A[0]
         result = A[0]
         for i in range(1, len(A)):
+            # must save tmp max/min to variable. otherwise not using current max/min.
             a = A[i] * min_tmp
             b = A[i] * max_tmp
             c = A[i]
@@ -28,6 +29,23 @@ class Solution:
             result = max_tmp if max_tmp > result else result
         return result
 
+    # https://gengwg.blogspot.com/2018/03/leetcode-152-maximum-product-subarray.html
+    def maxProduct(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        mintmp = nums[0]
+        maxtmp = nums[0]
+        res = nums[0]
+        for i, num in enumerate(nums):
+            if i == 0:
+                continue
+            tmp = mintmp
+            mintmp = min(num * mintmp, num * maxtmp, num)
+            maxtmp = max(num * tmp, num * maxtmp, num)
+            res = max(maxtmp, res)
+        return res
 
 if __name__ == '__main__':
     print Solution().maxProduct([2, 3, 1, 4, 7, -2, 2])
