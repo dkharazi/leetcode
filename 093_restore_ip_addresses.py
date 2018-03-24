@@ -20,16 +20,17 @@ class Solution(object):
         :type s: str
         :rtype: List[str]
         """
-
-        def dfs(s, sub, ips, ip):
-            if sub == 4:
+        def dfs(s, count, ips, ip):
+            if count == 4:
                 if s == '':
-                    ips.append(ip[1:])
-                return
-            for i in range(1, 4):
-                if i <= len(s):
-                    if int(s[:i]) <= 255:
-                        dfs(s[i:], sub + 1, ips, ip + '.' + s[:i])
+                    ips.append(ip[1:])  # remove first .
+                else:   # do nothing
+                    return
+            for i in range(1, 4):   # each section is possibly 1, 2, 3 digits
+                # each section must be smaller than 255. i must be inside also
+                if i <= len(s) and int(s[:i]) <= 255:
+                    # call self before next line to get '0.0.0.0', not '00.0.0.0'
+                    dfs(s[i:], count + 1, ips, ip + '.' + s[:i])
                     if s[0] == '0':
                         break
 
