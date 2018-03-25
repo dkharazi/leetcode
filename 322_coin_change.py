@@ -24,17 +24,19 @@ class Solution(object):
         for i in range(1, amount+1):
             # set min to a large impossible value
             # note it must be inside the loop
-            mincoins = amount + 1
-            for c in coins:
-                if i >= c and dp[i-c] != -1:
-                    mincoins = min(mincoins, dp[i-c] + 1)
-            dp[i] = -1 if mincoins == amount + 1 else mincoins
+            mincoins = i + 1
+            for j in [c for c in coins if c <= i]:  # only possible if coin value smaller than i
+                if dp[i-j] != -1:   # if i-j is impossible, i is also impossible.
+                    mincoins = min(mincoins, dp[i-j] + 1)
+            # if min coints is impossible set it to -1
+            dp[i] = -1 if mincoins == i + 1 else mincoins
         return dp[amount]
-
 
 if __name__ == '__main__':
     s = Solution()
-    print s.coinChange([1], 1)
-    print s.coinChange([1, 2, 5], 11)
+    print s.coinChange([1], 1)  # 1
+    print s.coinChange([1, 2, 5], 11)   # 3
+    print s.coinChange([1,5,10,25], 63)   # 6
+    print s.coinChange([1,5,10,21,25], 63)   # 3
 
 
