@@ -60,7 +60,7 @@ class Solution:
         for x in A[1:]:
             if cursum < 0:
                 cursum = 0
-            cursum = cursum + x
+            cursum += x
             maxsum = max(maxsum, cursum)
         return maxsum
 
