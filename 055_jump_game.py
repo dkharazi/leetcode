@@ -31,8 +31,8 @@ class Solution(object):
                 return False
         return True
 
+    # https://www.hrwhisper.me/leetcode-jump-game/
     def canJump(self, nums):
-        # https://www.hrwhisper.me/leetcode-jump-game/
         """
         cover表示当前覆盖到的下标，
         如果cover >=len(A)-1，说明跳到了目的地，有解。
@@ -47,6 +47,16 @@ class Solution(object):
                 cover = max(cover, nums[i] + i)
         return False
 
+    # https://gengwg.blogspot.com/2018/04/leetcode-55-jump-game.html
+    # greedy
+    def canJump(self, nums):
+        cover = 0
+        for i in range(len(nums)):
+            if i > cover:
+                return False
+            else:
+                cover = max(cover, i + nums[i])
+        return True
 
 if __name__ == '__main__':
     print Solution().canJump([2, 3, 1, 1, 4])
