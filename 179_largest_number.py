@@ -41,6 +41,11 @@ class Solution:
         # so this will sort a, b in reverted (descending) order
         return [1, -1][a + b > b + a]
 
+        # equivalent to:
+        if a + b > b + a:
+            return -1
+        else:
+            return 1
 
 if __name__ == '__main__':
     print Solution().largestNumber([3, 30, 34, 5, 9])
