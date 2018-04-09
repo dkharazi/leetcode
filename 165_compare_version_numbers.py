@@ -12,7 +12,7 @@
 # Here is an example of version numbers ordering:
 #
 # 0.1 < 1.1 < 1.2 < 13.37
-# 
+#
 # Credits:
 # Special thanks to @ts for adding this problem and creating all test cases.
 
@@ -64,3 +64,5 @@ class Solution(object):
 
 if __name__ == '__main__':
     print Solution().compareVersion("1.0", "1")
+    print Solution().compareVersion("01", "1")  # >>> int('01') == 1
+
