@@ -38,6 +38,8 @@ class Solution(object):
         return len(A) == len(B) and A in B * 2  
 
 def isRotation(s1, s2):
+    if not s1 and not s2:
+        return True
     for i in range(0, len(s1)):
         s3 = s1[-i:] + s1[:-i]
         if s3 == s2:
