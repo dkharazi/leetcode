@@ -34,7 +34,7 @@ class Solution:
         lookup = {}
         for i, num in enumerate(numbers):
             if target - num in lookup:
-                # return [lookup[target - num], i]
+                # return [lookup[target - num] + 1, i + 1]
                 return list(map(lambda x: x + 1, [lookup[target - num], i]))
             lookup[num] = i
         return []
