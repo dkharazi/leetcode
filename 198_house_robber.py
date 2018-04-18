@@ -32,7 +32,9 @@ class Solution(object):
     # 这个问题可以这么想，假设只有一家，那么你只能偷这家；假设有两家，那么你要判断两家哪个钱多，偷哪个；
     # 依次类推，假设有n家，那么你要判断“偷第n家不偷第n-1家且前n-2家尽量多的偷”和“不偷第n家且前n-1家尽量多的偷”，哪个得到的钱多偷哪个。
     # 你可以递归求解，然而复杂度太高无法AC。所以应该记录已经计算过的结果，于是这变成一个动态规划问题。
+    # dp[i]: max money after visiting house[i]
     # dp[i] = max(dp[i - 1], dp[i - 2] + nums[i])
+    # https://gengwg.blogspot.com/2018/04/leetcode-198-house-robber-ep124.html
     def rob(self, nums):
         n = len(nums)
         dp = [0] * n
