@@ -34,13 +34,20 @@ class Solution(object):
 
         return b & m
 
+    # ex:
+    # 100101
+    # 100110
+    # 100111
+    # will get '100000' = '100' + '000'
+    # https://gengwg.blogspot.com/2018/04/leetcode-201-bitwise-and-of-numbers.html
     def rangeBitwiseAnd(self, m, n):
-        count = 0
+        offset = 0
+        # right shift until equal
         while m != n:
             m >>= 1
             n >>= 1
-            count += 1
-        return m << count
+            offset += 1
+        return m << offset
 
 
 if __name__ == '__main__':
