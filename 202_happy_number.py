@@ -54,6 +54,21 @@ class Solution(object):
                 return False
             n = sum
 
+    # use set instead of dict keys.
+    def isHappy(self, n):
+        s = set()
+        while True:
+            s.add(n)
+            sum = 0
+            while n:
+                sum += (n%10) ** 2
+                n /= 10
+            if sum == 1:
+                return True
+            if sum in s:
+                return False
+            n = sum
+
     # Floyd Cycle Detection Algorithm
     def isHappy(self, n):
         slow = fast = n

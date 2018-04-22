@@ -24,14 +24,15 @@ class Solution(object):
         if not head:
             return
         # move to the first node that is not equal to val
+        # removing leading nodes that are equal to target
         while head and head.val == val:
             head = head.next
 
         p = head
         while p and p.next:
             if p.next.val == val:
+                # remove node p.next
                 p.next = p.next.next
-                # continue
             else:
                 p = p.next
 
