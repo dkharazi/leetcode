@@ -66,3 +66,6 @@ if __name__ == '__main__':
     print Solution().compareVersion("1.0", "1")
     print Solution().compareVersion("01", "1")  # >>> int('01') == 1
 
+    vers = ['0.1', '1.2', '1.1', '0.1', '13.37']
+    print sorted(vers, cmp=Solution().compareVersion)
+
