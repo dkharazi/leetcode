@@ -34,6 +34,7 @@
 
 
 class Solution(object):
+    # BFS
     def canFinish(self, numCourses, prerequisites):
         """
         http://bookshadow.com/weblog/2015/05/07/leetcode-course-schedule/
@@ -63,8 +64,46 @@ class Solution(object):
                 courses.remove(x)
         return len(courses) == 0
 
+    # DFS
+    # https://gengwg.blogspot.com/2018/05/leetcode-207-course-schedule-ep93.html
+    def canFinish(self, numCourses, prerequisites):
+        # neighbors
+        graph = [[] for _ in range(numCourses)]
+        for pair in prerequisites:
+            # get neighbors
+            graph[pair[1]].append(pair[0])
+        # 0 == unknown, 1 == visiting, 2 == visited
+        v = [0] * numCourses
+        for i in range(numCourses):
+            if self.dfs(i, v, graph):
+                return False
+        return True
+
+    def dfs(self, cur, v, graph):
+        # if node is marked as visiting return CYCLE
+        if v[cur] == 1:
+            return True
+        # if node is marked as visited OK
+        if v[cur] == 2:
+            return False
+
+        # mark node as visiting
+        v[cur] = 1
+
+        # for each neighbor
+        for t in graph[cur]:
+            if self.dfs(t, v, graph):
+                return True
+
+        # mark node as visited, after visiting all neighbors
+        v[cur] = 2
+
+        # no CYCLE
+        return False
+
 
 if __name__ == '__main__':
-    print Solution().canFinish(4, [[1, 0], [2, 0], [3, 1], [3, 2]])
-    print Solution().canFinish(2, [[1,0],[0,1]])
+    print Solution().canFinish(4, [[1, 0], [2, 0], [3, 1], [3, 2]]) # True
+    print Solution().canFinish(2, [[1,0],[0,1]])    # False
+    print Solution().canFinish(2, [[1,0]])    # False
 
