@@ -56,7 +56,7 @@ class Trie(object):
         else:
             child = node.children.get(word[0])
             if child:
-                self.find(child, word[1:])
+                return self.find(child, word[1:])
         return False
 
     def startsWith(self, prefix):
