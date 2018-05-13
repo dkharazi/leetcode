@@ -71,6 +71,34 @@ class Trie(object):
                 return False
         return True
 
+# https://gengwg.blogspot.com/2018/05/leetcode-208-implement-trie-prefix-tree.html
+class Trie:
+    def __init__(self):
+        self.root = {}
+
+    def insert(self, word):
+        p = self.root
+        for c in word:
+            if c not in p:
+                p[c] = {}
+            p = p[c]
+        p['#'] = True
+
+    def search(self, word):
+        node = self.find(word)
+        return node is not None and '#' in node
+
+    def startsWith(self, prefix):
+        return self.find(prefix) is not None
+
+    def find(self, w):
+        p = self.root
+        for c in w:
+            if c not in p:
+                return None
+            p = p[c]
+        return p
+
 # Your Trie object will be instantiated and called as such:
 # obj = Trie()
 # obj.insert(word)
