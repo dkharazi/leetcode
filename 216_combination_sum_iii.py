@@ -27,7 +27,7 @@ class Solution(object):
     def dfs(self, candidates, target, start, k, valuelist):
         length = len(candidates)
         if target == 0 and valuelist not in Solution.ret and len(valuelist) == k:
-            return Solution.ret.append(valuelist)
+            Solution.ret.append(valuelist)
         for i in range(start, length):
             if target < candidates[i]:
                 return
