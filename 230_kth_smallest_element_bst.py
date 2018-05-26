@@ -44,6 +44,7 @@ class Solution(object):
             self.k -= 1
             if self.k == 0:
                 self.res = root.val
+                return
             dfs(root.right)
 
         dfs(root)
