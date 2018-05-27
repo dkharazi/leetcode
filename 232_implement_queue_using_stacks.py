@@ -30,7 +30,8 @@ class MyQueue(object):
         """
         Initialize your data structure here.
         """
-        self.inStack, self.outStack = [], []
+        self.inStack  = []
+        self.outStack = []
 
     def push(self, x):
         """
@@ -46,7 +47,7 @@ class MyQueue(object):
         :rtype: int
         """
         self.peek() # peek first
-        self.outStack.pop()
+        return self.outStack.pop()
 
     def peek(self):
         """
