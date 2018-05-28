@@ -13,6 +13,8 @@
 # above example, [5, 3] is also correct.
 
 class Solution:
+    # if seeing the element again in dict, delete it
+    # things left are the single elements
     def singleNumber(self, nums):
         resultDict = {}
         for i in nums:
@@ -24,6 +26,7 @@ class Solution:
         return list(resultDict.keys())
 
 
+    # use a dictionary to store counts for each element
     def singleNumber(self, nums):
         d = {}
         for n in nums:
@@ -32,6 +35,7 @@ class Solution:
             else:
                 d[n] += 1
         return [k for k, v in d.items() if v == 1]
+        # return [k for k in d if d[k] == 1]
 
     # https://www.jianshu.com/p/c31bd59d7877
     def singleNumber(self, nums):
@@ -42,9 +46,8 @@ class Solution:
                 both.add(n)
             else:
                 double.add(n)
-        print both
-        print double
-        return list(both - double)
+        single = both - double
+        return list(single)
 
 if __name__ == "__main__":
     print Solution().singleNumber([1, 2, 1, 3, 2, 5])
