@@ -27,7 +27,7 @@ class Solution(object):
 
     # iterative
     def addDigits2(self, num):
-        while num >= 10:
+        while num >= 10:    # loop exit condition num < 10, i.e. is one digit
             num = num // 10 + num % 10
         return num
 
