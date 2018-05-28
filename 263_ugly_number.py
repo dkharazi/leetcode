@@ -7,6 +7,7 @@
 # Note that 1 is typically treated as an ugly number.
 
 class Solution(object):
+    # divide by 2, 3 and 5 as often as possible and then check whether we arrived at 1.
     def isUgly(self, num):
         """
         :type num: int
@@ -22,6 +23,15 @@ class Solution(object):
         while num % 5 == 0:
             num /= 5
 
+        return num == 1
+
+    # refactor above using for loop:
+    def isUgly(self, num):
+        if num <=0:
+            return False
+        for i in (2, 3, 5):
+            while num % i == 0:
+                num /= i
         return num == 1
 
 if __name__ == "__main__":
