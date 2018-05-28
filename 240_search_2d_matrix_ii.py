@@ -48,14 +48,15 @@ class Solution(object):
         i, j = 0, n-1       # bin search starting point:
                             # upper right corner: (i, j) = (0, n-1)
 
-        while i < m and j > 0:
+        while i < m and j >= 0:
             if matrix[i][j] == target:
                 return True
             elif matrix[i][j] < target:
                 i += 1
-            else:
+            else: # matrix[i][j] > target
                 j -= 1
         return False
 
 
-
+print(Solution().searchMatrix([[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], 5))
+print(Solution().searchMatrix([[5]], 5))
