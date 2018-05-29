@@ -54,6 +54,9 @@ class Solution(object):
     def isIsomorphic(self, s, t):
         return len(set(zip(s, t))) == len(set(s)) == len(set(t))
 
+    # refer to prob. 290
+    def isIsomorphic(self, s, t):
+        return map(s.index, s) == map(t.index, t)
 
 if __name__ == '__main__':
     print Solution().isIsomorphic("egg", "add")
