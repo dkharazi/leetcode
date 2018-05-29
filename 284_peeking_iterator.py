@@ -23,25 +23,29 @@
 # Follow up: How would you extend your design to be generic and work with all types, not just integer?
 
 # Below is the interface for Iterator, which is already defined for you.
-#
-# class Iterator(object):
-#     def __init__(self, nums):
-#         """
-#         Initializes an iterator object to the beginning of a list.
-#         :type nums: List[int]
-#         """
-#
-#     def hasNext(self):
-#         """
-#         Returns true if the iteration has more elements.
-#         :rtype: bool
-#         """
-#
-#     def next(self):
-#         """
-#         Returns the next element in the iteration.
-#         :rtype: int
-#         """
+
+class Iterator(object):
+    def __init__(self, nums):
+        """
+        Initializes an iterator object to the beginning of a list.
+        :type nums: List[int]
+        """
+        self.it = iter(nums)
+
+    def hasNext(self):
+        """
+        Returns true if the iteration has more elements.
+        :rtype: bool
+        """
+        return 
+
+    def next(self):
+        """
+        Returns the next element in the iteration.
+        :rtype: int
+        """
+        # it = iter(self.nums)
+        return next(self.it)
 
 # http://bookshadow.com/weblog/2015/09/21/leetcode-peeking-iterator/
 # 引入两个额外的变量nextElement和peekFlag:
@@ -90,7 +94,14 @@ class PeekingIterator(object):
         return self.peekFlag or self.iter.hasNext()
 
 # Your PeekingIterator object will be instantiated and called as such:
-# iter = PeekingIterator(Iterator(nums))
-# while iter.hasNext():
-#     val = iter.peek()   # Get the next element but not advance the iterator.
-#     iter.next()         # Should return the same value as [val].
+nums = [1, 2, 3]
+it = PeekingIterator(Iterator(nums))
+
+val = it.peek() 
+print(val)
+it.next()
+val = it.peek() 
+print(val)
+# while it.hasNext():
+#     val = it.peek()   # Get the next element but not advance the iterator.
+#     it.next()         # Should return the same value as [val].
