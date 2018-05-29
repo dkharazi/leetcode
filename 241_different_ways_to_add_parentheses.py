@@ -33,24 +33,24 @@ class Solution(object):
         :rtype: List[int]
         """
         ans = []
-        for i in range(len(input)):
-            c = input[i]
+        for i, c in enumerate(input):
             if c in '+-*':
-                l = self.diffWaysToCompute(input[:i])
-                r = self.diffWaysToCompute(input[i+1:])
-                for m in l:
-                    for n in r:
+                left = self.diffWaysToCompute(input[:i])
+                right = self.diffWaysToCompute(input[i+1:])
+                for m in left:
+                    for n in right:
                         if c == '+':
                             ans.append(m + n)
-                        elif c == '-':
-                            ans.append(m - n)
                         elif c == '*':
                             ans.append(m * n)
-        # edge condition to stop recursion
-        # input is digit
+                        else:
+                        # elif c == '-':
+                            ans.append(m - n)
+        # input is a single digit
         if not ans:
             ans.append(int(input))
         return ans
 
 if __name__ == '__main__':
     print Solution().diffWaysToCompute("2-1-1")
+    print Solution().diffWaysToCompute("2")

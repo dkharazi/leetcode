@@ -19,9 +19,28 @@ class Solution(object):
             else:
                 if i - dict[nums[i]] <= k:
                     return True
-                else:
+                else:   # distance larger than k. replace with current position
                     dict[nums[i]] = i
 
+        return False
+
+    def containsNearbyDuplicate(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        dict = {}
+        for idx, num in enumerate(nums):
+            if num not in dict:
+                dict[num] = idx
+            else: # num in dict
+                # idx diff smaller than k
+                if idx - dict[num] <= k:
+                    return True
+                else: # idx diff larger than k
+                    # replace with current position, so that later diff may be smaller than k
+                    dict[nums[i]] = i
         return False
 
     # shorter version. test in map first.

@@ -1,8 +1,8 @@
 # 287. Find the Duplicate Number
 
-# Given an array nums containing n + 1 integers 
+# Given an array nums containing n + 1 integers
 # where each integer is between 1 and n (inclusive),
-# prove that at least one duplicate number must exist. 
+# prove that at least one duplicate number must exist.
 # Assume that there is only one duplicate number, find the duplicate one.
 
 # Note:
@@ -20,6 +20,19 @@ class Solution(object):
             if nums[i] == nums[i-1]:
                 return nums[i]
 
+    # use set
+    def findDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        seen = set()
+        # store each element as we iterate over the array,
+        # check each element as we iterate over the array.
+        for num in nums:
+            if num in seen:
+                return num
+            seen.add(num)
     # https://www.hrwhisper.me/leetcode-find-the-duplicate-number/
     # 如果数组中元素不重复，那么,任意下标i和数组中该下标的值一一对应，
     # 如 对于数组 3,4,1,2，有如下对应关系：（注意，值从1~n）

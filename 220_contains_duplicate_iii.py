@@ -28,7 +28,7 @@ class Solution(object):
 
         推出： | floor(nums[i] / t) - floor(nums[j] / t) | <= 1   式c
 
-        ​等价： floor(nums[j] / t) ∈ {floor(nums[i] / t) - 1, floor(nums[i] / t), floor(nums[i] / t) + 1} 式d
+        等价： floor(nums[j] / t) ∈ {floor(nums[i] / t) - 1, floor(nums[i] / t), floor(nums[i] / t) + 1} 式d
 
         其中式b是式c的充分非必要条件，因为逆否命题与原命题等价，所以：
 
@@ -46,7 +46,7 @@ class Solution(object):
 
         numDict = collections.OrderedDict()
         for i in range(len(nums)):
-            key = nums[i] / max(1, t)
+            key = nums[i] / max(1, t)   # in case t==0
             for m in (key, key - 1, key + 1):
                 if m in numDict and abs(nums[i] - numDict[m]) <= t:
                     return True

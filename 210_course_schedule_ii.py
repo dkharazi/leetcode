@@ -38,10 +38,11 @@
 
 
 class Solution(object):
+    # BFS
     def findOrder(self, numCourses, prerequisites):
         """
         http://bookshadow.com/weblog/2015/05/14/leetcode-course-schedule-ii/
-        
+
         :type numCourses: int
         :type prerequisites: List[List[int]]
         :rtype: List[int]
@@ -68,6 +69,35 @@ class Solution(object):
                 courses.remove(x)
         return [[], ans][len(courses) == 0]
 
+    # DFS
+    def findOrder(self, numCourses, prerequisites):
+        graph = [[] for _ in range(numCourses)]
+        for pair in prerequisites:
+            graph[pair[1]].append(pair[0])
+        # 0 == unknown, 1 == visiting, 2 == visited
+        v = [0] * numCourses
+        ans = []
+        for i in range(numCourses):
+            if self.dfs(i, v, graph, ans):
+                return []
+        ans.reverse()
+        return ans
+
+    def dfs(self, cur, v, graph, ans):
+        if v[cur] == 1:
+            return True
+        if v[cur] == 2:
+            return False
+        v[cur] = 1
+
+        for t in graph[cur]:
+            if self.dfs(t, v, graph, ans):
+                return True
+        v[cur] = 2
+        # ans.insert(0, cur)
+        ans.append(cur)
+
+        return False
 
 if __name__ == '__main__':
     print Solution().findOrder(4, [[1, 0], [2, 0], [3, 1], [3, 2]])
