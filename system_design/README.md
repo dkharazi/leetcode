@@ -64,9 +64,10 @@ messaging:
 * point-to-point
     - sender --> queue --> receiver
 * store-forward
- ```
+```
      sender --> mediator --> receiver
-                          --> storage```
+                          --> storage
+```
 * request-reply
 
 loadblancing
