@@ -15,12 +15,17 @@
 
 class Solution(object):
     # https://gengwg.blogspot.com/2018/02/leetcode-300-longest-increasing.html
+    # note this is subsequence not sub array.
     def lengthOfLIS(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """
+        # can simply return max(dp) if with this line
+        # if not nums:
+        #     return 0
         sz = len(nums)
+        # dp[i]: length of LIS ending with nums[i]
         dp = [1] * sz
         for i in range(sz):
             for j in range(i):
