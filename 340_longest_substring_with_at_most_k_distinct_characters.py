@@ -34,8 +34,4 @@ class Solution:
         return maxlen
 
 print (Solution().lengthOfLongestSubstringKDistinct('eceba', 2))
-
-
-
-
-
+print (Solution().lengthOfLongestSubstringKDistinct('eeeee', 2))
