@@ -1,6 +1,6 @@
 # 303. Range Sum Query - Immutable
 
-# Given an integer array nums, 
+# Given an integer array nums,
 # find the sum of the elements between indices i and j (i ≤ j), inclusive.
 
 # Example:
@@ -39,6 +39,8 @@ class NumArray(object):
         self.sums = [0] * (size + 1)
         for i in range(size):
             self.sums[i+1] = self.sums[i] + nums[i]
+        # for i in range(1, size+1):
+        #     self.sums[i] = self.sums[i-1] + nums[i-1]
 
     def sumRange(self, i, j):
         """
