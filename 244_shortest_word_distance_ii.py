@@ -55,7 +55,3 @@ print(wd.shortest("coding", "makes"))
 # WordDistance wordDistance = new WordDistance(words);
 # wordDistance.shortest("word1", "word2");
 # wordDistance.shortest("anotherWord1", "anotherWord2");
-
-
-
-
