@@ -65,10 +65,15 @@ class Solution(object):
     # start_num: the remaining factors should be equal to or larger than start_num
     # factors: the factors so far, stored in a list
     def helper(self, target, start_num, factors, res):
-        if factors:
-            res.append(factors + [target])
+        # if factors:
+        #     res.append(factors + [target])
+        if target == 1:
+            if len(factors) > 1:
+                res.append(list(factors))
+                return
 
-        for i in range(start_num, int(math.sqrt(target))+1):
+        #for i in range(start_num, int(math.sqrt(target))+1):
+        for i in range(start_num, target+1):
             if target % i == 0:
                 factors.append(i)
                 self.helper(target//i, i, factors, res)
