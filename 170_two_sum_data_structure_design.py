@@ -1,4 +1,5 @@
-# Design and implement a TwoSum class. It should support the following operations: add and find.
+# Design and implement a TwoSum class.
+# It should support the following operations: add and find.
 #
 # add - Add the number to an internal data structure.
 # find - Find if there exists any pair of numbers which sum is equal to the value.
@@ -24,6 +25,8 @@ class TwoSum:
     def find(self, value):
         for key in self.table:
             num = value - key
+            # num diff than key, or
+            # num == key, and more than one keys
             if num in self.table and (num != key or self.table[key] > 1):
                 return True
         return False
@@ -36,4 +39,4 @@ if __name__ == "__main__":
         Sol.add(i)
 
     for i in (4, 7):
-        print Sol.find(i)
+        print("{}: {}".format(i, Sol.find(i)))
