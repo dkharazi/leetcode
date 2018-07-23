@@ -27,6 +27,20 @@
 #         self.right = None
 
 # https://www.hrwhisper.me/algorithm-lowest-common-ancestor-of-a-binary-tree/
+# https://articles.leetcode.com/lowest-common-ancestor-of-a-binary-tree-part-i/
+
+# A Bottom-up Approach (Worst case O(n) ):
+
+# Using a bottom-up approach, we can improve over the top-down approach by avoiding traversing the same nodes over and over again.
+#
+# We traverse from the bottom, and once we reach a node which matches one of the two nodes, we pass it up to its parent.
+# The parent would then test its left and right subtree if each contain one of the two nodes.
+# If yes, then the parent must be the LCA and we pass its parent up to the root.
+# If not, we pass the lower node which contains either one of the two nodes (if the left or right subtree contains either p or q),
+# or NULL (if both the left and right subtree does not contain either p or q) up.
+#
+# Sounds complicated? Surprisingly the code appears to be much simpler than the top-down one.
+
 class Solution(object):
     def lowestCommonAncestor(self, root, p, q):
         """
