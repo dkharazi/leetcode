@@ -10,6 +10,8 @@ class Solution:
     def maxProduct(self, A):
         """
         http://www.cnblogs.com/zuoyuan/p/4019326.html
+        主要需要考虑负负得正这种情况，比如之前的最小值是一个负数，再乘以一个负数就有可能成为一个很大的正数
+        e.g. min_tmp = -4, max_tmp = -4, c = 2
         :param A:
         :return:
         """
