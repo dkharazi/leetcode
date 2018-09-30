@@ -9,10 +9,6 @@
 # dict = ["leet", "code"].
 #
 # Return true because "leetcode" can be segmented as "leet code".
-#
-# UPDATE (2017/1/4):
-# The wordDict parameter had been changed to a list of strings (instead of a set of strings).
-# Please reload the code definition to get the latest changes.
 
 
 class Solution(object):
@@ -23,6 +19,7 @@ class Solution(object):
         :type wordDict: List[str]
         :rtype: bool
         """
+        # dp[i] is whether s[:i] can break into wordDict.
         dp = [False for _ in range(len(s) + 1)]  # len+1
         dp[0] = True  # dp[0] is always True to initiate the process
         for i in range(1, len(dp)):  # i starts at 1
