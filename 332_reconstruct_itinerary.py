@@ -46,4 +46,5 @@ class Solution(object):
 sol = Solution()
 print sol.findItinerary([["MUC", "LHR"], ["JFK", "MUC"], ["SFO", "SJC"], ["LHR", "SFO"]])
 print sol.findItinerary([["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]])
+print sol.findItinerary([["JFK","KUL"],["JFK","NRT"],["NRT","JFK"]])
 
