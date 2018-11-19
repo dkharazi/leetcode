@@ -26,6 +26,7 @@ class Solution:
 
         for c in abbr:
             if not str.isdigit(c):
+                # cur pos in word is index + char_count
                 index += int(count)
                 if index >= len(word) or c != word[index]:
                     return False
