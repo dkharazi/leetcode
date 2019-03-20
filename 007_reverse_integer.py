@@ -9,7 +9,8 @@ Example2: x = -123, return -321
 click to show spoilers.
 
 Have you thought about this?
-Here are some good questions to ask before coding. Bonus points for you if you have already thought through this!
+Here are some good questions to ask before coding.
+Bonus points for you if you have already thought through this!
 
 If the integer's last digit is 0, what should the output be? ie, cases such as 10, 100.
 
