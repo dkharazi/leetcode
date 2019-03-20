@@ -44,7 +44,7 @@ class Solution(object):
         row = len(A)
         col = len(B[0])
         n = len(A[0])
-        C =[ [0 for i in range(col)] for j in range(row) ]
+        C =[ [0 for j in range(col)] for i in range(row) ]
         for i in range(row):
             for j in range(col):
                 for k in range(n):
@@ -59,7 +59,7 @@ class Solution(object):
         row = len(A)
         col = len(B[0])
         n = len(A[0])
-        C =[ [0 for i in range(col)] for j in range(row) ]
+        C =[ [0 for j in range(col)] for i in range(row) ]
         for i in range(row):
             for j in range(n):
                 if A[i][j] != 0:
