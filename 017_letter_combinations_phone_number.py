@@ -78,12 +78,8 @@ class Solution(object):
             "9": "wxzy"
         }
 
-        res = []
+        res = ['']
         for d in digits:
-            if len(res) == 0:
-                for c in phone_dict[d]:
-                    res.append(c)
-            else:
                 temp_res = []
                 for x in res:
                     for c in phone_dict[d]:
