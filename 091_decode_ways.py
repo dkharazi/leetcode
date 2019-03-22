@@ -8,6 +8,7 @@ A message containing letters from A-Z is being encoded to numbers using the foll
 'B' -> 2
 ...
 'Z' -> 26
+
 Given an encoded message containing digits, determine the total number of ways to decode it.
 
 For example,
@@ -47,12 +48,16 @@ class Solution(object):
 
         dp = [1, 1]
         for i in range(2, len(s) + 1):
+            # xxx12xxx
             if 10 <= int(s[i - 2:i]) <= 26 and s[i - 1] != '0':
                 dp.append(dp[i - 1] + dp[i - 2])
+            # xxx20xxx
             elif int(s[i - 2:i]) == 10 or int(s[i - 2:i]) == 20:
                 dp.append(dp[i - 2])
+            # xxx59xxx
             elif s[i - 1] != '0':
                 dp.append(dp[i - 1])
+            # xx307xxx
             else:
                 return 0
         return dp[len(s)]
@@ -71,3 +76,4 @@ class Solution(object):
 
 if __name__ == '__main__':
     print Solution().numDecodings('80')
+    print Solution().numDecodings('509')
