@@ -57,4 +57,5 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    print Solution().rob([1, 2, 1])
+    print Solution().rob([1, 2, 1])     # 2
+    print Solution().rob([2, 1, 1, 2])  # 4
