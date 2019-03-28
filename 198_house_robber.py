@@ -48,6 +48,13 @@ class Solution(object):
             dp[i] = max(dp[i - 1], dp[i - 2] + nums[i])
         return dp[-1]
 
+    # 上面的代码使用的空间是冗余的，因为每次循环只会用到前两个数据。所以代码可以降低空间复杂度到O(1)。
+    def rob(self, nums):
+        now = last = 0
+        for num in nums:
+            last, now = now, max(last + num, now)
+        return now
+
 
 if __name__ == '__main__':
     print Solution().rob([1, 2, 1])
