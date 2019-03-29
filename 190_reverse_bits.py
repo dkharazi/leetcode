@@ -22,7 +22,12 @@ class Solution:
     def reverseBits(self, n):
         return int(bin(n)[2:].zfill(32)[::-1], 2)
 
+
     def reverseBits(self, n):
+        # make sure to remove the leading '0b', e.g.
+        # bin(43261596)
+        # '0b10100101000001111010011100'
+
         b = bin(n)[:1:-1]
         return int(b + '0' * (32 - len(b)), 2)
 
