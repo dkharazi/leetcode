@@ -10,7 +10,7 @@ convert it to a height balanced BST.
 # Definition for a binary tree node.
 class TreeNode(object):
     def __init__(self, x):
-        self.val = x
+        self.data = x
         self.left = None
         self.right = None
 
@@ -32,9 +32,32 @@ class Solution(object):
         if len(nums) == 1:
             return TreeNode(nums[0])
 
-        root = TreeNode(nums[len(nums) / 2])
+        root = TreeNode(nums[len(nums) // 2])
         # left of mid is left tree
-        root.left = self.sortedArrayToBST(nums[:len(nums) / 2])
+        root.left = self.sortedArrayToBST(nums[:len(nums) // 2])
         # right of mid is right tree
-        root.right = self.sortedArrayToBST(nums[len(nums) / 2 + 1:])
+        root.right = self.sortedArrayToBST(nums[len(nums) // 2 + 1:])
         return root
+
+def preorder(node):
+    if not node:
+        return
+    print(node.data, end=' ')
+    preorder(node.left)
+    preorder(node.right)
+
+if __name__ == '__main__':
+    sol = Solution()
+    nums = [1, 2, 3, 4, 5]
+    nums = [1, 2, 3]
+    nums = [1, 2, 3, 4, 5, 6, 7]
+    """
+    Constructed balanced BST is
+       4
+      / \
+     2   6
+    / \ / \
+    1 3 5 7
+    """
+    root = sol.sortedArrayToBST(nums)
+    preorder(root) # 4 2 1 3 6 5 7
