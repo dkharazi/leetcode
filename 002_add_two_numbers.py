@@ -82,9 +82,10 @@ class Solution(object):
 
     # https://gengwg.blogspot.com/2018/02/leoleetcode-2-add-two-numbers.html
     def addTwoNumbers(self, l1, l2):
+        # dummy.next to remember list head
         dummy = p = ListNode(0)
         carry = 0
-        while l1 or l2 or carry:
+        while l1 or l2 or carry:    # <-- this
             value = 0
             if l1:
                 value += l1.val
@@ -93,8 +94,10 @@ class Solution(object):
                 value += l2.val
                 l2 = l2.next
             value += carry
+            # create next node
             p.next = ListNode(value % 10)
             carry = value / 10
+            # p point to ListNode(value%10)
             p = p.next
         return dummy.next
 
