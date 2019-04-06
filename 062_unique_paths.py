@@ -60,6 +60,34 @@ class Solution(object):
 
         return dp[-1][-1]
 
+    # TLE
+    def uniquePaths(self, m: int, n: int) -> int:
+        if m == 1 or n == 1:
+            return 1
+        return self.uniquePaths(m-1, n) + self.uniquePaths(m, n-1)
+
+
+    def uniquePaths(self, m: int, n: int) -> int:
+        def compute_number_of_ways_to_xy(x, y):
+            if x == y == 0:
+                return 1
+
+            if number_of_ways[x][y] == 0:
+                ways_top = 0 if x == 0 else compute_number_of_ways_to_xy(x-1, y)
+                ways_left = 0 if y == 0 else compute_number_of_ways_to_xy(x, y-1)
+                number_of_ways[x][y] = ways_left + ways_top
+            return number_of_ways[x][y]
+
+        number_of_ways = [[0] * m for _ in range(n)]
+        return compute_number_of_ways_to_xy(n-1, m-1)
+
+    # a analytical way is to use the fact that each path from (0,0) to (n-1,m-1)
+    # is a sequence of m-1 horizontal steps and n-1 vertical steps.
+    # there are C(n+m-2,n-1) = C(n+m-2, m-1) = (n+m-2)! / ((n-1)! * (m-1)!)
+    def uniquePaths(self, m: int, n: int) -> int:
+        import math
+        return int(math.factorial(n+m-2) / (math.factorial(n-1) * math.factorial(m-1)))
 
 if __name__ == '__main__':
-    print Solution().uniquePaths(4, 7)
+    print(Solution().uniquePaths(4, 7))
+    print(Solution().uniquePaths(5, 5))  # 70

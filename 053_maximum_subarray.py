@@ -64,6 +64,15 @@ class Solution:
             maxsum = max(maxsum, cursum)
         return maxsum
 
+    # https://zh.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E5%88%97%E9%97%AE%E9%A2%98
+    def maxSubArray(self, nums: List[int]) -> int:
+        max_ending_here = max_so_far = nums[0]
+        for x in nums[1:]:
+            max_ending_here = max(x, max_ending_here + x)
+            max_so_far = max(max_so_far, max_ending_here)
+        return max_so_far
+
+
     # Brutal force solution
     def maxSubArray(self, A):
         return max([sum(i) for i in self.sublists(A)])
