@@ -35,11 +35,18 @@ class Solution:
 
     def __isAddOne(self, s1, s2, n):
         add = 0
-        for i in range(n):
+        i = 0
+        # for i in range(n):
+        # https://jianlu.github.io/2016/11/09/leetcode161-One-Eidt-Distance/
+        # above solution has bug. missed checking character immediately after diff
+        # use while loop to fix it; retreat i when diff
+        while i < n:
             if s1[i] != s2[i + add]:
                 if add == 1:
                     return False
                 add = 1
+                i -= 1
+            i += 1
         return add == 1
 
 
@@ -48,3 +55,6 @@ if __name__ == "__main__":
     s1 = "gfg"
     s2 = "axag"
     print(sol.isEditDistanceOne(s1, s2))
+    print(sol.isEditDistanceOne('abc', 'agbc'))
+    print(sol.isEditDistanceOne('abc', 'agxc')) # test case for bug
+
