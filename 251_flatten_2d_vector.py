@@ -42,7 +42,7 @@ class Vector2D(object):
     def _moveToValid(self):
         """
         move i and j to a valid position, so that self.vec2d[self.i][self.j] is valid.
-        this also takes care of case such as [[2, 3]] at initialization.
+        this also takes care of case such as [[], [2, 3]] at initialization.
         """
         while self.row < len(self.vec2d) and self.col >= len(self.vec2d[self.row]):
             self.row += 1
