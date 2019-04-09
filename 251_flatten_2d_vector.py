@@ -86,6 +86,7 @@ if __name__ == '__main__':
         []
     ]
     # vec2d = [[3]]
+    # vec2d = [[],[1,2,3],[4,5],[],[],[6],[7,8],[],[9],[10],[]]
     i, v = Vector2D(vec2d), []
     while i.hasNext(): v.append(i.next())
     print(v)
