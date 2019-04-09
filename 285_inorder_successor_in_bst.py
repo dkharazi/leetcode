@@ -44,3 +44,27 @@ class Solution:
                 root = root.right
         return res
 
+    # https://all4win78.wordpress.com/2016/07/11/leetcode-285-inorder-successor-in-bst/
+    def inorderSuccessor(root, p):
+        # p.right != null，说明可以从p.right开始找successor
+        if p.right:
+            p = p.right
+            while p.left:
+                p = p.left
+            return p
+
+        # p.right == null，说明需要从root开始寻找，
+        # 因为这个是BST，而且p没有right，所以successor一定是某个包含p的子树的root。
+        # 因此我们可以用一个临时变量，也就是successor，来存当前找到的大于p.val的node，
+        # 在从root往leaves寻找的时候，每次有新的node符合这个条件就更新这个临时变量，
+        # 最后返回这个临时变量就可以。
+        successor = None
+        node = root
+        while node.val != p.val:
+            if node.val < p.val:
+                node = node.right
+            else:
+                successor = node
+                node = node.left
+        return successor
+
