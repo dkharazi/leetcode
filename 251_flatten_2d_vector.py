@@ -64,6 +64,18 @@ class Vector2D(object):
         return self.row < len(self.vec2d)
 
 
+# use list comprehension. operations not in place
+class Vector2D(object):
+    def __init__(self, vec2d):
+        self.vec2d = vec2d
+        self.vec1d = [x for y in self.vec2d for x in y]
+
+    def next(self):
+        return self.vec1d.pop(0)
+
+    def hasNext(self):
+        return len(self.vec1d) > 0
+
 # Your Vector2D object will be instantiated and called as such:
 if __name__ == '__main__':
     vec2d = [
