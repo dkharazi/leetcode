@@ -33,4 +33,5 @@ class Solution(object):
 
 if __name__ == '__main__':
     print Solution().wordBreak("leetcode", ["leet", "code"])
+    print Solution().wordBreak("leetcode", ["leet", "cod"])
     print Solution().wordBreak("cars", ["car", "ca", "rs"])
