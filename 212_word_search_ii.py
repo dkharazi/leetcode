@@ -90,7 +90,7 @@ class Solution(object):
             trie.insert(word)
 
         visited = [[False] * w for x in range(h)]
-        dz = zip([1, 0, -1, 0], [0, 1, 0, -1])
+        dz = zip([1, 0, -1, 0], [0, 1, 0, -1])  # directions: [(0,1), (1,0), (0,-1), (-1,0)]
         ans = []
 
         def dfs(word, node, x, y):
