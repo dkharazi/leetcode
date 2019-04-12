@@ -57,11 +57,12 @@ class Solution:
         for edge in edges:
             par1 = edge[0]
             par2 = edge[1]
-            while par1 != parents[par1]:
+            while par1 != parents[par1]: # due to connected nodes before
                 par1 = parents[par1]
             while par2 != parents[par2]:
                 par2 = parents[par2]
             if par1 != par2:
+                # connect par2 with par1
                 parents[par2] = par1
                 ret -= 1
         return ret
