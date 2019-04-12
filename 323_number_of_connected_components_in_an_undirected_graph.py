@@ -43,5 +43,32 @@ class Solution:
                 count -= 1
         return count
 
-print(Solution().countComponents(5, [[0, 1], [1, 2], [3, 4]]))
-print(Solution().countComponents(5, [[0, 1], [1, 2], [2, 3], [3, 4]]))
+
+    # 一道难度适中的Union-Find题目。这类题目也有套路：首先为每个顶点初始化一个单独的集合；
+    # 然后遍历，每次遇到一个边，就把边的两个顶点所属的集合进行合并，
+    # 同时总的连通图数量减1。注意判断两个顶点是否属于同一个集合的经典代码，个人感觉应该背下来^_^。
+
+    # 这道题目用BFS和DFS也可以求解，但代码要相对复杂一些。
+    # --------------------- 
+    # 原文：https://blog.csdn.net/magicbean2/article/details/76474678 
+    def countComponents(self, n, edges):
+        parents = [i for i in range(n)]
+        ret = n
+        for edge in edges:
+            par1 = edge[0]
+            par2 = edge[1]
+            while par1 != parents[par1]:
+                par1 = parents[par1]
+            while par2 != parents[par2]:
+                par2 = parents[par2]
+            if par1 != par2:
+                parents[par2] = par1
+                ret -= 1
+        return ret
+
+
+
+if __name__ == '__main__':
+    
+    print(Solution().countComponents(5, [[0, 1], [1, 2], [3, 4]]))
+    print(Solution().countComponents(5, [[0, 1], [1, 2], [2, 3], [3, 4]]))
