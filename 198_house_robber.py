@@ -55,6 +55,22 @@ class Solution(object):
             last, now = now, max(last + num, now)
         return now
 
+    def rob(self, nums):
+        if nums is None: return 0
+        n = len(nums)
+        if n == 0: return 0
+        if n == 1: return nums[0]
+
+        f1 = nums[0]
+        f2 = max(nums[0], nums[1])
+
+        for i in range(2, n):
+            f = max(f1 + nums[i], f2)
+            f1 = f2
+            f2 = f
+        return f2
+
+
 
 if __name__ == '__main__':
     print Solution().rob([1, 2, 1])     # 2
