@@ -20,11 +20,11 @@
 # since a node can be a descendant of itself according to the LCA definition.
 
 # Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 # https://www.hrwhisper.me/algorithm-lowest-common-ancestor-of-a-binary-tree/
 # https://articles.leetcode.com/lowest-common-ancestor-of-a-binary-tree-part-i/
@@ -53,7 +53,8 @@ class Solution(object):
         :rtype: TreeNode
         """
 
-        if root is None or root == p or root == q:
+        #{}if root is None or root == p or root == q:
+        if root is None or root.val == p.val or root.val == q.val:
             return root
 
         left = self.lowestCommonAncestor(root.left, p, q)
@@ -68,3 +69,42 @@ class Solution(object):
             return right
         else:
             return None
+
+    # using extra space
+    def lowestCommonAncestor(self, root, p, q):
+        a = self.findPath(root, p)
+        b = self.findPath(root, q)
+        i = 0
+        while i < min(len(a), len(b)) and a[i] == b[i]:
+            i += 1
+        return a[i-1]
+
+    # Function to Find Path to Specified Node in Binary Tree
+    def findPath(self, root, node):
+        if not root:
+            return []
+        if root.val == node.val:
+            #return [root.val]
+            return [root]
+        res = self.findPath(root.left, node)
+        if res:
+            #return [root.val] + res
+            return [root] + res
+        res = self.findPath(root.right, node)
+        if res:
+            #return [root.val] + res
+            return [root] + res
+        return []
+
+
+
+if __name__ == "__main__":
+    root = TreeNode(5)
+    root.left = TreeNode(4)
+    root.right = TreeNode(8)
+    root.left.left = TreeNode(11)
+    root.left.left.right = TreeNode(2)
+    print(Solution().lowestCommonAncestor(root, TreeNode(11), TreeNode(8)).val)
+    print(Solution().lowestCommonAncestor(root, TreeNode(11), TreeNode(4)).val)
+
+
