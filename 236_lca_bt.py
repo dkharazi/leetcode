@@ -41,7 +41,10 @@
 #
 # Sounds complicated? Surprisingly the code appears to be much simpler than the top-down one.
 
+
 class Solution(object):
+    # https://www.youtube.com/watch?v=13m9ZCB8gjw
+    # Time complexity: O(n)
     def lowestCommonAncestor(self, root, p, q):
         """
         :type root: TreeNode
@@ -58,6 +61,7 @@ class Solution(object):
 
         if left and right:
             return root
+        # return left if left else right
         elif left:
             return left
         elif right:
