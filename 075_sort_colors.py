@@ -73,22 +73,21 @@ class Solution(object):
             return
         # 3 pointers
         p0 = 0  # all elements left of p0 are 0
-        p2 = len(nums) - 1  # all elements right of p2 are 0
-        i = 0
-        while i <= p2:
-            if nums[i] == 2:
-                nums[i], nums[p2] = nums[p2], nums[i]
+        p1 = 0
+        p2 = len(nums) - 1  # all elements right of p2 are 2
+        while p1 <= p2:
+            if nums[p1] == 2:
+                nums[p1], nums[p2] = nums[p2], nums[p1]
                 # do not advance i here
                 # because p2 position could be 0
                 # which can be caught by next condition
                 p2 -= 1
-            elif nums[i] == 0:
-                nums[i], nums[p0] = nums[p0], nums[i]
+            elif nums[p1] == 0:
+                nums[p1], nums[p0] = nums[p0], nums[p1]
                 p0 += 1
-                # advance i here because position p0 already known as 1
-                i += 1
-            else:  # n[i]==1, no swap. increment i.
-                i += 1
+                p1 += 1 # advance i here because position p0 already known as 1
+            else:       # n[p1]==1, no swap. increment i.
+                p1 += 1
 
         return nums
 
