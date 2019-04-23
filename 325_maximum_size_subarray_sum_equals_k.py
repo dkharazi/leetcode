@@ -17,6 +17,7 @@
 # Can you do it in O(n) time?
 
 class Solution(object):
+    # http://www.voidcn.com/article/p-pbvzylrp-qp.html
     def maxSubArrayLen(self, nums, k):
         res = 0
         acc = 0
