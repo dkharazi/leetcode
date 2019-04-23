@@ -26,7 +26,10 @@ class Solution(object):
         small = a if len(a) < len(b) else b
         big = a if len(a) >= len(b) else b
         small = '0' * pad + small
-        # print big, small
+        # or use below method to pad
+        # >>> t = '11'
+        # >>> t.rjust(5, '0')
+        # '00011'
 
         res = []
         carry = 0
