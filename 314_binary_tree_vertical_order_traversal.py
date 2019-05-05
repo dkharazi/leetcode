@@ -21,8 +21,7 @@
 #
 #     [
 #       [9],
-#       [3,15],
-#       [20],
+#       [3,15], #       [20],
 #       [7]
 #     ]
 #
@@ -78,6 +77,8 @@
 # Once we have maximum and minimum distances from root, we iterate for each vertical line at distance minimum to maximum from root,
 # and for each vertical line traverse the tree and print the nodes which lie on that vertical line.
 
+import collections
+
 class Node:
     def __init__(self, key):
         self.data = key
@@ -114,11 +115,29 @@ class Solution:
         minimum = [0]
         maximum = [0]
         self.findMinMax(root, minimum, maximum, 0)
-        print minimum[0], maximum[0]
+        #print minimum[0], maximum[0]
 
         for line_no in range(minimum[0], maximum[0]+1):
             self.printVerticalLine(root, line_no, 0)
             print
+
+    # https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/discuss/231256/python-queue-%2B-hash-map
+    def verticalTraversal(self, root):
+        g = collections.defaultdict(list)
+        queue = [(root, 0)]
+        while queue:
+            new = []
+            d = collections.defaultdict(list)
+            for node, s in queue:
+                d[s].append(node.val)
+                if node.left:
+                    new.append((node.left, s-1))
+                if node.right:
+                    new.append((node.right, s+1))
+            for i in d:
+                g[i].extend(sorted(d[i]))   # list1.extend(list2) --> list1 = list1 + list2
+            queue = new
+        return [g[i] for i in sorted(g)]    # sorted(g) = sorted(g.keys())
 
 if __name__ == '__main__':
     root = Node(1)
@@ -130,6 +149,14 @@ if __name__ == '__main__':
     root.right.right = Node(7)
     root.right.left.right = Node(8)
     root.right.right.right = Node(9)
+
+#            1
+#         /    \
+#        2      3
+#       / \    / \
+#      4   5  6   7
+#              \   \
+#               8   9
 
     print "Vertical order traversal is"
     Solution().verticalOrder(root)

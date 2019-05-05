@@ -80,4 +80,5 @@ if __name__ == '__main__':
     root.right = TreeNode(3)
     root.right.left = TreeNode(4)
     root.right.right = TreeNode(5)
+    print((Codec().serialize(root)))
     print(Codec().deserialize((Codec().serialize(root))))

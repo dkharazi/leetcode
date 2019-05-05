@@ -26,8 +26,8 @@ class Solution(object):
             for k in range(i):
                 if dp[k] and s[k:i] in wordDict:
                     dp[i] = True
-        return dp[-1]
         # print dp
+        return dp[-1]
         # return dp[len(s)]
 
 
