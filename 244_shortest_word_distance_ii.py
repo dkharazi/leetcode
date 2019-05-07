@@ -1,5 +1,5 @@
 """
-244 LeetCode Java: Shortest Word Distance II
+244 Shortest Word Distance II
 
 This is a follow up of Shortest Word Distance. The only difference is now you are given the list of words
 and your method will be called repeatedly many times with different parameters. How would you optimize it?
