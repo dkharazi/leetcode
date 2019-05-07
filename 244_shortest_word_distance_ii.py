@@ -46,12 +46,20 @@ class wordDistance:
                 ans = min(ans, abs(i1 - i2))
         return ans
 
-wd = wordDistance(["practice", "makes", "perfect", "coding", "makes"])
-print(wd.shortest("coding", "practice"))
-print(wd.shortest("coding", "makes"))
-
+    # replace above for loop with indexing to reduce complexity from O(N^2) to O(1)
+    # taking advantage of both indexes are sorted, and both words are in the list
+    def shortest(self, word1, word2):
+        indexes1 = self.indexes.get(word1)
+        indexes2 = self.indexes.get(word2)
+        ans = min(abs(indexes1[0] - indexes2[-1]), abs(indexes2[0] - indexes1[-1]))
+        return ans
 
 # Your WordDistance object will be instantiated and called as such:
 # WordDistance wordDistance = new WordDistance(words);
 # wordDistance.shortest("word1", "word2");
 # wordDistance.shortest("anotherWord1", "anotherWord2");
+wd = wordDistance(["practice", "makes", "perfect", "coding", "makes"])
+print(wd.shortest("coding", "practice"))
+print(wd.shortest("coding", "makes"))
+
+
