@@ -34,8 +34,8 @@ class Solution:
                 a = i
             if words [i] == word2:
                 if word1 == word2:
-                    a = b
-                b = i
+                    a = b   # record a to previous position
+                b = i       # then update b
 
             if a >= 0 and b >= 0:
                 ans = min(ans, abs(a - b))
